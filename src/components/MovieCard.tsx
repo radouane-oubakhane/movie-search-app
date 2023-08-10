@@ -1,5 +1,6 @@
-import { Card, CardBody, Heading, Hide, Image } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Heading, Hide, Image, Text, VStack, Box } from "@chakra-ui/react";
 import { Movie } from "../hooks/useMovies";
+import AverageVoteCircle from "./AverageVoteCircle";
 
 interface Props {
     movie: Movie;
@@ -9,17 +10,24 @@ interface Props {
 
 const MovieCard = ({ movie }: Props) => {
   return (
-   <Card borderRadius={10} overflow='hidden'>
-    <Image 
+    <VStack 
+    spacing={4}
+    align='stretch'>
+    
+    <Image borderRadius={10} overflow='hidden'
     src={'https://image.tmdb.org/t/p/original' + movie.poster_path} 
     alt={`${movie.title} poster`} 
     />
-    <CardBody>
-        <Heading>
-            {movie.title}
-        </Heading>
-    </CardBody>
-   </Card>
+   
+   <Box>
+        <HStack justifyContent='space-between'>
+            <Heading fontSize="2xl">
+                {movie.title}
+            </Heading>
+            <AverageVoteCircle averageVote={movie.vote_average} />
+        </HStack>
+    </Box>
+    </VStack>
   )
 }
 

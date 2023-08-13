@@ -1,6 +1,7 @@
 import { Card, CardBody, HStack, Heading, Hide, Image, Text, VStack, Box } from "@chakra-ui/react";
 import { Movie } from "../hooks/useMovies";
 import AverageVoteCircle from "./AverageVoteCircle";
+import getImageUrl from "../services/image-url";
 
 interface Props {
     movie: Movie;
@@ -15,7 +16,7 @@ const MovieCard = ({ movie }: Props) => {
     align='stretch'>
     
     <Image borderRadius={10} overflow='hidden'
-    src={'https://image.tmdb.org/t/p/original' + movie.poster_path} 
+    src={getImageUrl(movie.poster_path, 'w300')} 
     alt={`${movie.title} poster`} 
     />
    

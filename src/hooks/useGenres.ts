@@ -4,32 +4,27 @@ import { CanceledError } from "axios";
 
 
 
-export interface Movie {
+interface Genre {
     id: number;
-    title: string;
-    poster_path: string;
-    vote_average: number;
+    name: string;
+}
+
+interface FetchGenresResponse {
+    genres: Genre[];
 }
 
 
-interface FetchMoviesResponse {
-    page: number;
-    results: Movie[];
-}
-
-
-
-const useMovies = () => {
-    const [movies, setMovies] = useState<Movie[]>([])
+const useGenres = () => {
+    const [genres, setGenres] = useState<Genre[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('') 
 
     useEffect(() => {
         const controller = new AbortController()
         apiClient
-        .get<FetchMoviesResponse>('/discover/movie', { signal: controller.signal })
+        .get<FetchGenresResponse>('/genre/movie/list', { signal: controller.signal })
         .then((response) => {
-            setMovies(response.data.results)
+            setGenres(response.data.genres)
             setIsLoading(false)
         })
         .catch((error) => {
@@ -42,8 +37,11 @@ const useMovies = () => {
         
     }, [])
 
-    return { movies, isLoading, error }
+    return { genres, isLoading, error }
+
+
 }
 
 
-export default useMovies;
+
+export default useGenres;

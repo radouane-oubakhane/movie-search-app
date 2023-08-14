@@ -16,13 +16,13 @@ const MovieGrid = () => {
             {error && <div>{error}</div>}
             <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl:5}} spacing={10} padding='10px'>
                 {isLoading && skeletons.map((_, index) => (
-                    <MovieCardContainer>
-                        <MovieCardSkeleton key={index} />
+                    <MovieCardContainer key={index}>
+                        <MovieCardSkeleton />
                     </MovieCardContainer>
                 ))}
                 {movies.map((movie) => (
-                    <MovieCardContainer>
-                        <MovieCard key={movie.id} movie={movie} />
+                    <MovieCardContainer key={movie.id}>
+                        <MovieCard movie={movie} />
                     </MovieCardContainer>
                 ))}
             </SimpleGrid> 

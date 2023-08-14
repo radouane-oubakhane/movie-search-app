@@ -12,13 +12,12 @@ interface Props {
 const MovieCard = ({ movie }: Props) => {
   return (
     <VStack 
-    w='200px'
     spacing={4}
     align='stretch'>
       <Image borderRadius={10} overflow='hidden'
       src={getImageUrl(movie.poster_path, 'w300')} 
       alt={`${movie.title} poster`} 
-      />
+    />
     
     <Box>
           <HStack justifyContent='space-between'>

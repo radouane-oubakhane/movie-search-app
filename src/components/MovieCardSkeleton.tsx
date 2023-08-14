@@ -3,7 +3,6 @@ import { SkeletonText, Skeleton, VStack, SkeletonCircle, HStack } from "@chakra-
 const MovieCardSkeleton = () => {
   return (
     <VStack 
-    w='200px'
     spacing={4}
     align='stretch'>
         <Skeleton borderRadius={10} overflow='hidden' h='300px' />

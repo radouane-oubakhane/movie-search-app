@@ -10,7 +10,7 @@ interface Props {
 const MovieCardContainer = ({children}: Props) => {
   return (
     <Box 
-    w='200px'
+    w='100%'
     >
         {children}
     </Box>

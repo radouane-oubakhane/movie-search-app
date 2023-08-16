@@ -19,7 +19,7 @@ interface FetchMoviesResponse {
 
 
 
-const useMovies = () => {
+const useMovies = (selectedTimeWindow: 'day' | 'week', deps?: any[]) => {
     const [movies, setMovies] = useState<Movie[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('') 
@@ -27,22 +27,22 @@ const useMovies = () => {
     useEffect(() => {
         const controller = new AbortController()
         apiClient
-        .get<FetchMoviesResponse>('/discover/movie', { signal: controller.signal })
+        .get<FetchMoviesResponse>('/trending/movie/' + selectedTimeWindow , { signal: controller.signal })
         .then((response) => {
-            setMovies(response.data.results)
-            setIsLoading(false)
+            setMovies(response.data.results);
+            setIsLoading(false);
         })
         .catch((error) => {
             if (error instanceof CanceledError) return;
-            setError(error.message)
-            setIsLoading(false)
+            setError(error.message);
+            setIsLoading(false);
         })
 
-        return () => controller.abort()
+        return () => controller.abort();
         
-    }, [])
+    }, deps ?? []);
 
-    return { movies, isLoading, error }
+    return { movies, isLoading, error };
 }
 
 

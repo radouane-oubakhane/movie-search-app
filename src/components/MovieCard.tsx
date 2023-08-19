@@ -18,10 +18,9 @@ const MovieCard = ({ movie }: Props) => {
       src={getImageUrl(movie.poster_path, 'w300')} 
       alt={`${movie.title} poster`} 
     />
-    
-    <Box>
+      <Box>
           <HStack justifyContent='space-between'>
-              <Heading fontSize="2xl">
+              <Heading fontSize="1xl">
                   {movie.title}
               </Heading>
               <AverageVoteCircle averageVote={movie.vote_average} />

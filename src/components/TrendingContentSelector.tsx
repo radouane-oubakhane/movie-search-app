@@ -10,12 +10,12 @@ interface Props {
 const TrendingContentSelector = ({ onSelectTimeWindow }: Props) => {
   return (
     <Stack  direction='row' spacing={4} align='center'>
-  <Button colorScheme='facebook' variant='ghost' 
+  <Button colorScheme='pink' variant='ghost'
     onClick={() => onSelectTimeWindow('day')}
   >
     Today
   </Button>
-  <Button colorScheme='twitter' variant='ghost' 
+  <Button colorScheme='twitter' variant='ghost'
     onClick={() => onSelectTimeWindow('week')}
   >
     This week

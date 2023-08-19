@@ -11,13 +11,13 @@ import { useState } from "react";
 
 const MovieGrid = () => {
     const [selectedTimeWindow, setSelectedTimeWindow] = useState<'day' | 'week'>('day')
-    const { movies, isLoading, error } = useMovies(selectedTimeWindow, [selectedTimeWindow])
+    const { mediaContent: movies, isLoading, error } = useMovies(selectedTimeWindow, [selectedTimeWindow])
     const skeletons = Array(12).fill(0)
     
     return (
         <>
-            <HStack>
-                <Heading as='h1' size='2xl' padding='10px'>Trending</Heading>
+            <HStack justifyContent='space-between' padding='10px'>
+                <Heading as='h1' size='2xl'>Trending movies</Heading>
                 <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} />
             </HStack>
             {error && <div>{error}</div>}

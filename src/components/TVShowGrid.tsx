@@ -1,23 +1,23 @@
 import { Heading, SimpleGrid, HStack } from "@chakra-ui/react";
 
-import useMovies from "../hooks/useMovies"
-import MovieCard from "./MovieCard"
+import TVShowCard from "./TVShowCard"
 import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";
 import TrendingContentSelector from "./TrendingContentSelector";
 import { useState } from "react";
+import useTVShows from "../hooks/useTVShows";
 
 
 
-const MovieGrid = () => {
+const TVShowGrid = () => {
     const [selectedTimeWindow, setSelectedTimeWindow] = useState<'day' | 'week'>('day')
-    const { mediaContent: movies, isLoading, error } = useMovies(selectedTimeWindow, [selectedTimeWindow])
+    const { mediaContent: tvShows, isLoading, error } = useTVShows(selectedTimeWindow, [selectedTimeWindow])
     const skeletons = Array(12).fill(0)
     
     return (
         <>
             <HStack justifyContent='space-between' padding='10px'>
-                <Heading as='h1' size='2xl'>Trending movies</Heading>
+                <Heading as='h1' size='2xl'>Trending TV shows</Heading>
                 <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} />
             </HStack>
             {error && <div>{error}</div>}
@@ -27,9 +27,9 @@ const MovieGrid = () => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {movies.map((movie) => (
-                    <CardContainer key={movie.id}>
-                        <MovieCard movie={movie} />
+                {tvShows.map((tvShow) => (
+                    <CardContainer key={tvShow.id}>
+                        <TVShowCard tvShow={tvShow} />
                     </CardContainer>
                 ))}
             </SimpleGrid> 
@@ -37,4 +37,4 @@ const MovieGrid = () => {
     )
 }
 
-export default MovieGrid
+export default TVShowGrid

@@ -1,4 +1,4 @@
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react"
+import { CircularProgress, CircularProgressLabel, Text } from "@chakra-ui/react"
 
 
 interface Props {
@@ -10,7 +10,9 @@ const AverageVoteCircle = ({ averageVote }: Props) => {
   const votePercentage = parseInt((averageVote * 10).toFixed(0))
   return (
     <CircularProgress value={votePercentage} color={color} >
-      <CircularProgressLabel>{votePercentage} % </CircularProgressLabel>
+      <CircularProgressLabel> 
+        <Text fontSize="sm" fontWeight="bold">{votePercentage} %</Text>
+      </CircularProgressLabel>
     </CircularProgress>
   )
 }

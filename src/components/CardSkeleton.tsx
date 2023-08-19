@@ -1,6 +1,6 @@
 import { SkeletonText, Skeleton, VStack, SkeletonCircle, HStack } from "@chakra-ui/react"
 
-const MovieCardSkeleton = () => {
+const CardSkeleton = () => {
   return (
     <VStack 
     spacing={4}
@@ -14,4 +14,4 @@ const MovieCardSkeleton = () => {
   )
 }
 
-export default MovieCardSkeleton
+export default CardSkeleton

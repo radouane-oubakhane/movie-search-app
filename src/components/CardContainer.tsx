@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-const MovieCardContainer = ({children}: Props) => {
+const CardContainer = ({children}: Props) => {
   return (
     <Box 
     w='100%'
@@ -17,4 +17,4 @@ const MovieCardContainer = ({children}: Props) => {
   )
 }
 
-export default MovieCardContainer
+export default CardContainer

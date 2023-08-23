@@ -1,7 +1,8 @@
-import { HStack, Heading, Image, VStack, Box } from "@chakra-ui/react";
+import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import { TVShow } from "../hooks/useTVShows";
+import formatDate from "../services/format-date";
 
 interface Props {
     tvShow: TVShow;
@@ -20,9 +21,14 @@ const MovieCard = ({ tvShow }: Props) => {
     />
       <Box>
           <HStack justifyContent='space-between'>
-              <Heading fontSize="1xl">
-                  {tvShow.name}
+          <VStack>
+              <Heading fontSize="1xl" textAlign='start'>
+                {tvShow.name}
               </Heading>
+              <Text as='abbr' textAlign='start'>
+                {formatDate(tvShow.first_air_date)}
+              </Text>
+            </VStack>
               <AverageVoteCircle averageVote={tvShow.vote_average} />
           </HStack>
       </Box>

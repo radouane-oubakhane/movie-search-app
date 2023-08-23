@@ -1,7 +1,8 @@
-import { Card, CardBody, HStack, Heading, Hide, Image, Text, VStack, Box } from "@chakra-ui/react";
+import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
 import { Movie } from "../hooks/useMovies";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
+import formatDate from "../services/format-date";
 
 interface Props {
     movie: Movie;
@@ -20,10 +21,15 @@ const MovieCard = ({ movie }: Props) => {
     />
       <Box>
           <HStack justifyContent='space-between'>
-              <Heading fontSize="1xl">
-                  {movie.title}
+            <VStack>
+              <Heading fontSize="1xl" textAlign='start'>
+                {movie.title}
               </Heading>
-              <AverageVoteCircle averageVote={movie.vote_average} />
+              <Text as='abbr' textAlign='start'>
+                {formatDate(movie.release_date)}
+              </Text>
+            </VStack>
+            <AverageVoteCircle averageVote={movie.vote_average} />
           </HStack>
       </Box>
     </VStack>

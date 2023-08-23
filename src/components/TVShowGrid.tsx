@@ -18,7 +18,7 @@ const TVShowGrid = () => {
         <>
             <HStack justifyContent='space-between' padding='10px'>
                 <Heading as='h1' size='2xl'>Trending TV shows</Heading>
-                <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} />
+                <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} selectedTimeWindow={selectedTimeWindow} />
             </HStack>
             {error && <div>{error}</div>}
             <SimpleGrid columns={{sm: 2, md: 3, lg: 4, xl:6}} spacing={10} padding='10px'>

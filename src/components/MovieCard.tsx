@@ -21,7 +21,7 @@ const MovieCard = ({ movie }: Props) => {
     />
       <Box>
           <HStack justifyContent='space-between'>
-            <VStack>
+            <VStack align='stretch'>
               <Heading fontSize="1xl" textAlign='start'>
                 {movie.title}
               </Heading>

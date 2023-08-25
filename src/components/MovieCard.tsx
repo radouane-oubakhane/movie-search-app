@@ -16,6 +16,7 @@ const MovieCard = ({ movie }: Props) => {
     spacing={4}
     align='stretch'>
       <Image borderRadius={10} overflow='hidden'
+      objectFit='cover'
       src={getImageUrl(movie.poster_path, 'w300')} 
       alt={`${movie.title} poster`} 
     />

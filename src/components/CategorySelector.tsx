@@ -21,6 +21,6 @@ const CategorySelector = ({ title, category, setCategory }: Props) => {
   )
 }
 
-export default CategorySelector
+export default CategorySelector 
 
 

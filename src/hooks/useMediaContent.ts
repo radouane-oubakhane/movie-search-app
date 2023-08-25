@@ -25,6 +25,7 @@ const useMediaContent = <T>(endpoint: string, selectedTimeWindow: 'day' | 'week'
         .then((response) => {
             setMediaContent(response.data.results.slice(0, 12));
             setIsLoading(false);
+            setError('');
         })
         .catch((error) => {
             if (error instanceof CanceledError) return;

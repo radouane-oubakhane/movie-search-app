@@ -1,21 +1,31 @@
 import { Menu, MenuButton, MenuItem, MenuList, Heading } from "@chakra-ui/react"
+import { Link } from "react-router-dom";
 
 interface Props {
     title: string;
-    category: string[];
+    route: string;
+    categories: {title: string, route: string}[]
     setCategory: (category: string) => void;
 }
 
 
-const CategorySelector = ({ title, category, setCategory }: Props) => {
+const CategorySelector = ({ title, route, categories, setCategory }: Props) => {
   return (
     <Menu>
   <MenuButton>
     <Heading as='b' size='sm'>{title}</Heading>
   </MenuButton>
   <MenuList>
-    {category.map((category) => (
-        <MenuItem textTransform='capitalize' key={category} onClick={() => setCategory(category)}>{category}</MenuItem>))}
+    {categories.map((category, index) => (
+      <Link key={index} to={`/${route}/${category.route}`}>
+        <MenuItem 
+        textTransform='capitalize' 
+        onClick={() => setCategory(category.title)
+        }>
+          {category.title}
+        </MenuItem>
+      </Link>))
+    }  
   </MenuList>
 </Menu>
   )

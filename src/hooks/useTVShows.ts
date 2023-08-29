@@ -14,6 +14,6 @@ export interface TVShow {
 
 
 
-const useTVShows = (selectedTimeWindow: 'day' | 'week', deps?: any[]) => useMediaContent<TVShow>('/trending/tv/', selectedTimeWindow, deps);
+const useTVShows = (selectedTimeWindow: 'day' | 'week' | null, deps?: any[]) => useMediaContent<TVShow>('/trending/tv/', selectedTimeWindow, deps);
 
 export default useTVShows;

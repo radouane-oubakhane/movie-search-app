@@ -2,18 +2,31 @@ import { HStack, Image, Center } from '@chakra-ui/react'
 import logo from '../assets/Logo.svg.png'
 import ColorModeSwitch from './ColorModeSwitch'
 import CategorySelector from './CategorySelector'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
-  const movies = ['popular', 'top rated', 'upcoming', 'now playing'];
-  const tvShows = ['popular', 'top rated', 'on tv', 'airing today'];
+  const movieCategories = [
+    {title: 'popular', route: 'popular'}, 
+    {title: 'top rated', route: 'top-rated'},
+    {title: 'upcoming', route: 'upcoming'}, 
+    {title: 'now playing', route: 'now-playing'}
+  ];
+  const tvShowCategories = [
+    {title: 'popular', route: 'popular'}, 
+    {title: 'top rated', route: 'top-rated'}, 
+    {title: 'on tv', route: 'on-the-air'}, 
+    {title: 'airing today', route: 'airing-today'}
+  ];
   return (
     <HStack justifyContent='space-between' padding='10px'>        
         <HStack justifyContent='space-between' spacing={10}>
           <Center boxSize='60px'>
+            <Link to='/'>
               <Image src={logo} alt="logo" />
+            </Link>
           </Center>
-          <CategorySelector title='Movies' category={movies} setCategory={(category : string) => console.log(category)} />
-          <CategorySelector title='TV Shows' category={tvShows} setCategory={(category : string) => console.log(category)} />
+          <CategorySelector title='Movies' route='movie' categories={movieCategories} setCategory={(category : string) => console.log(category)} />
+          <CategorySelector title='TV Shows' route='tv' categories={tvShowCategories} setCategory={(category : string) => console.log(category)} />
         </HStack>
         <ColorModeSwitch />
     </HStack>

@@ -22,7 +22,7 @@ const MovieGrid = () => {
                 <Heading as='h1' size='2xl'>Trending movies</Heading>
                 <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} selectedTimeWindow={selectedTimeWindow} />
             </HStack>
-            <SimpleGrid columns={{sm: 2, md: 3, lg: 4, xl:6}} spacing={10} padding='10px'>
+            <SimpleGrid columns={{ sm: 2, md: 3, lg: 4, xl:6 }} spacing={10} padding='10px'>
                 {isLoading && skeletons.map((_, index) => (
                     <CardContainer key={index}>
                         <CardSkeleton />

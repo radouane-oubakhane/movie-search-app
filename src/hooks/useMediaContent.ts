@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import { MovieQuery } from "../components/MovieContainer";
 
 
 
@@ -13,17 +14,31 @@ interface FetchResponse<T> {
 
 
 
-const useMediaContent = <T>(endpoint: string, selectedTimeWindow: 'day' | 'week', deps?: any[]) => {
+const useMediaContent = <T>(
+    endpoint: string, 
+    selectedTimeWindow: 'day' | 'week' | null, 
+    movieQuery?: MovieQuery, 
+    ) => {
+
     const [mediaContent, setMediaContent] = useState<T[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('') 
 
+    const selectedTimeWindowUrl = selectedTimeWindow ? '/' + selectedTimeWindow : '';
+
     useEffect(() => {
         const controller = new AbortController()
         apiClient
-        .get<FetchResponse<T>>(endpoint + selectedTimeWindow , { signal: controller.signal })
+        .get<FetchResponse<T>>(endpoint + selectedTimeWindowUrl , { 
+            signal: controller.signal,
+            params: {
+                sort_by: movieQuery?.sortBy,
+                'primary_release_date.gte': movieQuery?.primaryReleaseDateGte,
+                'primary_release_date.lte': movieQuery?.primaryReleaseDateLte,
+            }
+        })
         .then((response) => {
-            setMediaContent(response.data.results.slice(0, 12));
+            setMediaContent(response.data.results);
             setIsLoading(false);
             setError('');
         })
@@ -35,7 +50,7 @@ const useMediaContent = <T>(endpoint: string, selectedTimeWindow: 'day' | 'week'
 
         return () => controller.abort();
         
-    }, deps ?? []);
+    }, [selectedTimeWindowUrl, endpoint, movieQuery]);
 
     return { mediaContent, isLoading, error };
 }

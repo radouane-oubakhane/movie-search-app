@@ -1,7 +1,7 @@
 import { Divider, Grid, GridItem } from "@chakra-ui/react"
 import NavBar from "./components/NavBar"
-import MovieGrid from "./components/MovieGrid"
-import TVShowGrid from "./components/TVShowGrid"
+import MovieGrid from "./components/TrendingMovieGrid"
+import TVShowGrid from "./components/TrendingTVShowGrid"
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
-import { TVShow } from "../hooks/useTVShows";
+import { TVShow } from "../hooks/useTrendingTVShows";
 import formatDate from "../services/format-date";
 
 interface Props {

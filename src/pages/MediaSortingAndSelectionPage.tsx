@@ -1,11 +1,11 @@
 import { Grid, GridItem } from "@chakra-ui/react"
-import MovieGrid from "../components/MovieGrid"
 import SortFilterSidebar from "../components/SortFilterSidebar"
 import { useLocation } from "react-router-dom"
+import MovieContainer from "../components/MovieContainer"
 
 const MediaSortingAndSelectionPage = () => {
-  const location = useLocation()
-  console.log(location.pathname)
+  const location = useLocation();
+  const path = location.pathname.split('/');
   return (
     <Grid templateAreas={{
           base: `"aside" "content"`,
@@ -20,7 +20,7 @@ const MediaSortingAndSelectionPage = () => {
       <SortFilterSidebar />
     </GridItem>
     <GridItem area="content">
-      <MovieGrid />
+      {path[1] === 'movie' && <MovieContainer path={path[2]} />}
     </GridItem>
   </Grid>
   )

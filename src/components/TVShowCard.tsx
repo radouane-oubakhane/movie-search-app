@@ -10,7 +10,7 @@ interface Props {
 
 
 
-const MovieCard = ({ tvShow }: Props) => {
+const TVShowCard = ({ tvShow }: Props) => {
   return (
     <VStack 
     spacing={4}
@@ -36,4 +36,4 @@ const MovieCard = ({ tvShow }: Props) => {
   )
 }
 
-export default MovieCard
+export default TVShowCard

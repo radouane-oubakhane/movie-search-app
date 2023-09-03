@@ -8,8 +8,9 @@ interface Props {
 
 export interface MovieQuery {
     sortBy: string;
-    primaryReleaseDateGte: string;
-    primaryReleaseDateLte: string;
+    primaryReleaseDateGte?: string;
+    primaryReleaseDateLte?: string;
+    releaseDateLte?: string;
 }
 
 
@@ -19,6 +20,7 @@ const MovieContainer = ({ path }: Props) => {
   const [movieQuery, setMovieQuery] = useState<MovieQuery>({} as MovieQuery); 
   
   useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
 
     if (path === 'popular') {
         setMovieQuery({sortBy: 'popularity.desc'} as MovieQuery)
@@ -27,10 +29,10 @@ const MovieContainer = ({ path }: Props) => {
         setMovieQuery({sortBy: 'vote_count.desc'} as MovieQuery)
     }    
     if (path === 'upcoming') {
-      setMovieQuery({primaryReleaseDateGte: new Date().toISOString().split('T')[0]} as MovieQuery)
+      setMovieQuery({primaryReleaseDateGte: today, sortBy: 'popularity.desc'} as MovieQuery)
     }
     if (path === 'now-playing') {
-        setMovieQuery({primaryReleaseDateLte: new Date().toISOString().split('T')[0]} as MovieQuery)
+        setMovieQuery({primaryReleaseDateLte: today, sortBy: 'primary_release_date.desc'} as MovieQuery)
     }
     
     }, [path])

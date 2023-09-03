@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 import { MovieQuery } from "../components/MovieContainer";
+import { TVShowQuery } from "../components/TVShowContainer";
 
 
 
@@ -17,7 +18,7 @@ interface FetchResponse<T> {
 const useMediaContent = <T>(
     endpoint: string, 
     selectedTimeWindow: 'day' | 'week' | null, 
-    movieQuery?: MovieQuery, 
+    query?: MovieQuery & TVShowQuery, 
     ) => {
 
     const [mediaContent, setMediaContent] = useState<T[]>([])
@@ -32,9 +33,13 @@ const useMediaContent = <T>(
         .get<FetchResponse<T>>(endpoint + selectedTimeWindowUrl , { 
             signal: controller.signal,
             params: {
-                sort_by: movieQuery?.sortBy,
-                'primary_release_date.gte': movieQuery?.primaryReleaseDateGte,
-                'primary_release_date.lte': movieQuery?.primaryReleaseDateLte,
+                sort_by: query?.sortBy,
+                'primary_release_date.gte': query?.primaryReleaseDateGte,
+                'primary_release_date.lte': query?.primaryReleaseDateLte,
+                'first_air_date.gte': query?.fistAirDateGte,
+                'first_air_date.lte': query?.firstAirDateLte,
+                'release_date.lte': query?.releaseDateLte,
+                'screened_theatrically': query?.screenedTheatrically,
             }
         })
         .then((response) => {
@@ -50,7 +55,7 @@ const useMediaContent = <T>(
 
         return () => controller.abort();
         
-    }, [selectedTimeWindowUrl, endpoint, movieQuery]);
+    }, [selectedTimeWindowUrl, endpoint, query]);
 
     return { mediaContent, isLoading, error };
 }

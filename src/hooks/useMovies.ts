@@ -1,4 +1,5 @@
-import { MovieQuery } from "../components/MovieGrid";
+
+import { MovieQuery } from "../components/MovieContainer";
 import useMediaContent from "./useMediaContent";
 import { Movie } from "./useTrendingMovies";
 

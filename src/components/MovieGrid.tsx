@@ -23,9 +23,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
     
     return (
         <>
-            <HStack justifyContent='space-between' padding='10px'>
-            </HStack>
-            <SimpleGrid columns={{ sm: 2, md: 3, lg: 3, xl:5 }} spacing={10} padding='10px'>
+            <SimpleGrid columns={{ sm: 2, md: 3, lg: 3, xl:5 }} spacing={10} paddingX='10px'>
                 {isLoading && skeletons.map((_, index) => (
                     <CardContainer key={index}>
                         <CardSkeleton />

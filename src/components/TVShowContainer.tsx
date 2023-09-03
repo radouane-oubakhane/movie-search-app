@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { Grid, GridItem } from "@chakra-ui/react"
 import TVShowGrid from "./TVShowGrid";
+import SortFilterSidebar from "./SortFilterSidebar";
+import ContainerHeading from "./ContainerHeading";
 
 interface Props {
     path: string;
@@ -38,8 +41,37 @@ const MovieContainer = ({ path }: Props) => {
     }, [path])
    
 
+
+  const heading = [
+      {title: 'Popular', route: 'popular'}, 
+      {title: 'Top Rated', route: 'top-rated'}, 
+      {title: 'Currently Airing', route: 'on-the-air'}, 
+      {title: 'Airing Today', route: 'airing-today'}
+    ];
+
+  const title = heading.find((item) => item.route === path)?.title || '';
+
+
   return (
-    <TVShowGrid tvShowQuery={tvShowQuery} />
+    <Grid templateAreas={{
+      base: `"heading" "aside" "content"`,
+      lg: `"heading heading" "aside content"`
+      }}
+    templateColumns={{
+        base: '1fr',
+        lg: '300px 1fr'
+      }}
+    >
+      <GridItem area="heading" paddingX={2}>
+        <ContainerHeading category="TV Shows" title={title} />
+      </GridItem>
+      <GridItem area="aside" paddingX={2}>
+        <SortFilterSidebar />
+      </GridItem>
+      <GridItem area="content">
+        <TVShowGrid tvShowQuery={tvShowQuery} />
+      </GridItem>
+    </Grid>
   )
 }
 

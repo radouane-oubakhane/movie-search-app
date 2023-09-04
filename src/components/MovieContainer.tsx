@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react"
 import MovieGrid from "./MovieGrid";
-import SortFilterSidebar from "./SortFilterSidebar";
+import MovieSortFilterSidebar from "./MovieSortFilterSidebar";
 import ContainerHeading from "./ContainerHeading";
 
 
@@ -16,7 +16,6 @@ export interface MovieQuery {
     primaryReleaseDateLte?: string;
     releaseDateLte?: string;
 }
-
 
 
 
@@ -68,7 +67,9 @@ const MovieContainer = ({ path }: Props) => {
         <ContainerHeading category="Movies" title={title} />
       </GridItem>
       <GridItem area="aside" paddingX={2}>
-        <SortFilterSidebar />
+        <MovieSortFilterSidebar onSortChange={
+          (sortingOption: string) => setMovieQuery({sortBy: sortingOption} as MovieQuery)
+          } />
       </GridItem>
       <GridItem area="content">
         <MovieGrid movieQuery={movieQuery} />

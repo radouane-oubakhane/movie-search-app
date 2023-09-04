@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react"
 import TVShowGrid from "./TVShowGrid";
-import SortFilterSidebar from "./SortFilterSidebar";
+import MovieSortFilterSidebar from "./MovieSortFilterSidebar";
 import ContainerHeading from "./ContainerHeading";
 
 interface Props {
@@ -66,7 +66,7 @@ const MovieContainer = ({ path }: Props) => {
         <ContainerHeading category="TV Shows" title={title} />
       </GridItem>
       <GridItem area="aside" paddingX={2}>
-        <SortFilterSidebar />
+        <MovieSortFilterSidebar />
       </GridItem>
       <GridItem area="content">
         <TVShowGrid tvShowQuery={tvShowQuery} />

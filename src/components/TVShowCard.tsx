@@ -15,7 +15,7 @@ const TVShowCard = ({ tvShow }: Props) => {
     <VStack 
     spacing={4}
     align='stretch'>
-      <Image borderRadius={10} overflow='hidden'
+      <Image boxShadow='md' borderRadius={10} overflow='hidden'
       src={getImageUrl(tvShow.poster_path, 'w300')} 
       alt={`${tvShow.name} poster`} 
     />

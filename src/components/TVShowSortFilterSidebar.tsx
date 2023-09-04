@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-const MovieSortFilterSidebar = ({ onSortChange }: Props) => {
+const TVShowSortFilterSidebar = ({ onSortChange }: Props) => {
   const sortingOptions = [
     {label: 'Popularity Descending', value: 'popularity.desc'},
     {label: 'Popularity Ascending', value: 'popularity.asc'},
@@ -15,7 +15,6 @@ const MovieSortFilterSidebar = ({ onSortChange }: Props) => {
     {label: 'Release Date Descending', value: 'primary_release_date.desc'},
     {label: 'Release Date Ascending', value: 'primary_release_date.asc'}
   ];
-  
   return (
     <VStack
     spacing={4}
@@ -26,6 +25,7 @@ const MovieSortFilterSidebar = ({ onSortChange }: Props) => {
   )
 }
 
-export default MovieSortFilterSidebar;
+export default TVShowSortFilterSidebar;
+
 
 

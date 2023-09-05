@@ -1,12 +1,15 @@
 import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Text, Input, HStack, SimpleGrid } from "@chakra-ui/react"
+import MovieGenreList from "./MovieGenreList";
 
 interface Props {
     onDateFromChange: (date: string) => void;
     onDateToChange: (date: string) => void;
+    onGenreChange: (genreId: string) => void;
+    selectedGenreIds:  string[];
 }
 
 
-const FiltersSelector = ({ onDateFromChange, onDateToChange }: Props) => {
+const MovieFiltersSelector = ({ onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds }: Props) => {
   return (
     <Accordion defaultIndex={[0]} allowMultiple >
         <AccordionItem borderRadius="5px" boxShadow='md'>
@@ -45,11 +48,16 @@ const FiltersSelector = ({ onDateFromChange, onDateToChange }: Props) => {
                 </VStack>
             </VStack>
           </AccordionPanel>
+          <Divider />
+          <AccordionPanel pb={4}> 
+          <Text paddingBottom={3}>Genres</Text>
+          <MovieGenreList onGenreChange={onGenreChange} selectedGenreIds={selectedGenreIds} />
+          </AccordionPanel>
         </AccordionItem>
       </Accordion>
   )
 }
 
-export default FiltersSelector
+export default MovieFiltersSelector
 
 

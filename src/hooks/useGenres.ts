@@ -14,7 +14,7 @@ interface FetchGenresResponse {
 }
 
 
-const useGenres = () => {
+const useGenres = (endpoint: string) => {
     const [genres, setGenres] = useState<Genre[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('') 
@@ -22,7 +22,7 @@ const useGenres = () => {
     useEffect(() => {
         const controller = new AbortController()
         apiClient
-        .get<FetchGenresResponse>('/genre/movie/list', { signal: controller.signal })
+        .get<FetchGenresResponse>(endpoint, { signal: controller.signal })
         .then((response) => {
             setGenres(response.data.genres)
             setIsLoading(false)

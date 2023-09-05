@@ -1,15 +1,17 @@
 import { VStack } from "@chakra-ui/react";
 import SortingSelector from "./SortingSelector";
-import FiltersSelector from "./FiltersSelector";
+import MovieFiltersSelector from "./MovieFiltersSelector";
 
 interface Props {
   onSortChange: (sortingOption: string) => void;
   onDateFromChange: (date: string) => void;
   onDateToChange: (date: string) => void;
+  onGenreChange: (genreId: string) => void;
+  selectedGenreIds:  string[];
 }
 
 
-const MovieSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange }: Props) => {
+const MovieSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds }: Props) => {
   const sortingOptions = [
     {label: 'Popularity Descending', value: 'popularity.desc'},
     {label: 'Popularity Ascending', value: 'popularity.asc'},
@@ -25,7 +27,12 @@ const MovieSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange
     align='stretch'
     >
       <SortingSelector sortingOptions={sortingOptions} onSortChange={onSortChange} />
-      <FiltersSelector onDateFromChange={onDateFromChange} onDateToChange={onDateToChange} />
+      <MovieFiltersSelector 
+      onDateFromChange={onDateFromChange} 
+      onDateToChange={onDateToChange}
+      onGenreChange={onGenreChange} 
+      selectedGenreIds={selectedGenreIds}
+      />
     </VStack>
   )
 }

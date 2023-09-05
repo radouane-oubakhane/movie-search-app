@@ -15,6 +15,7 @@ export interface MovieQuery {
     primaryReleaseDateGte?: string;
     primaryReleaseDateLte?: string;
     releaseDateLte?: string;
+    withGenres?: string;
 }
 
 
@@ -67,7 +68,8 @@ const MovieContainer = ({ path }: Props) => {
         <ContainerHeading category="Movies" title={title} />
       </GridItem>
       <GridItem area="aside" paddingX={2}>
-        <MovieSortFilterSidebar onSortChange={
+        <MovieSortFilterSidebar 
+        onSortChange={
           (sortingOption: string) => setMovieQuery({...movieQuery, sortBy: sortingOption} as MovieQuery)
         }
         onDateFromChange={
@@ -76,6 +78,19 @@ const MovieContainer = ({ path }: Props) => {
         onDateToChange={
           (date: string) => setMovieQuery({...movieQuery, primaryReleaseDateLte: date} as MovieQuery)
         }
+        onGenreChange={
+          (genreId: string) => {
+            const genres = movieQuery.withGenres?.split(',');
+            if (!genres?.includes(genreId)) {
+              setMovieQuery({...movieQuery, withGenres: `${movieQuery.withGenres ? movieQuery.withGenres + ',' : ''}${genreId}`} as MovieQuery)
+            }
+            else {
+              const newGenres = genres.filter((genre) => genre !== genreId);
+              setMovieQuery({...movieQuery, withGenres: newGenres.join(',')} as MovieQuery)
+            }
+          }
+        }
+        selectedGenreIds={movieQuery.withGenres?.split(',') || []}
         />
       </GridItem>
       <GridItem area="content">

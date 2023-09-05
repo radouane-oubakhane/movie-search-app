@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react"
 import TVShowGrid from "./TVShowGrid";
-import TVShowSortFilterSidebar from "./MovieSortFilterSidebar";
+import TVShowSortFilterSidebar from "./TVShowSortFilterSidebar";
 import ContainerHeading from "./ContainerHeading";
 
 interface Props {
@@ -75,7 +75,7 @@ const TVShowContainer = ({ path }: Props) => {
           onDateToChange={
             (date: string) => setTVShowQuery({...tvShowQuery, firstAirDateLte: date} as TVShowQuery)
           }
-        />
+          />
       </GridItem>
       <GridItem area="content">
         <TVShowGrid tvShowQuery={tvShowQuery} />

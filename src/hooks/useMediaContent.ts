@@ -40,6 +40,7 @@ const useMediaContent = <T>(
                 'first_air_date.lte': query?.firstAirDateLte,
                 'release_date.lte': query?.releaseDateLte,
                 'screened_theatrically': query?.screenedTheatrically,
+                'with_genres': query?.withGenres,
             }
         })
         .then((response) => {

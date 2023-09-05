@@ -67,8 +67,15 @@ const TVShowContainer = ({ path }: Props) => {
       </GridItem>
       <GridItem area="aside" paddingX={2}>
         <TVShowSortFilterSidebar onSortChange={
-          (sortingOption: string) => setTVShowQuery({sortBy: sortingOption} as TVShowQuery)
-          } />
+          (sortingOption: string) => setTVShowQuery({...tvShowQuery, sortBy: sortingOption} as TVShowQuery)
+          }
+          onDateFromChange={
+            (date: string) => setTVShowQuery({...tvShowQuery, fistAirDateGte: date} as TVShowQuery)
+          }
+          onDateToChange={
+            (date: string) => setTVShowQuery({...tvShowQuery, firstAirDateLte: date} as TVShowQuery)
+          }
+        />
       </GridItem>
       <GridItem area="content">
         <TVShowGrid tvShowQuery={tvShowQuery} />

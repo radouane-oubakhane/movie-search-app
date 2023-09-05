@@ -13,7 +13,7 @@ const SortingSelector = ({ sortingOptions, onSortChange }: Props) => {
           <h2>
             <AccordionButton>
               <Box as="span" flex='1' textAlign='left'>
-                <Heading size='md'>Sort</Heading>
+                <Heading size='sm'>Sort</Heading>
               </Box>
               <AccordionIcon />
             </AccordionButton>

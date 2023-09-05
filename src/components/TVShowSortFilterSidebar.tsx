@@ -1,12 +1,15 @@
 import { VStack } from "@chakra-ui/react";
 import SortingSelector from "./SortingSelector";
+import FiltersSelector from "./FiltersSelector";
 
 interface Props {
   onSortChange: (sortingOption: string) => void;
+  onDateFromChange: (date: string) => void;
+  onDateToChange: (date: string) => void;
 }
 
 
-const TVShowSortFilterSidebar = ({ onSortChange }: Props) => {
+const TVShowSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange }: Props) => {
   const sortingOptions = [
     {label: 'Popularity Descending', value: 'popularity.desc'},
     {label: 'Popularity Ascending', value: 'popularity.asc'},
@@ -21,6 +24,7 @@ const TVShowSortFilterSidebar = ({ onSortChange }: Props) => {
     align='stretch'
     >
       <SortingSelector sortingOptions={sortingOptions} onSortChange={onSortChange} />
+      <FiltersSelector onDateFromChange={onDateFromChange} onDateToChange={onDateToChange} />
     </VStack>
   )
 }

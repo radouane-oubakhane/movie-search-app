@@ -20,7 +20,7 @@ const AverageVoteCircle = ({ averageVote }: Props) => {
   return (
     <CircularProgress value={votePercentage} color={color} >
       <CircularProgressLabel> 
-        <Text fontSize="sm" fontWeight="bold">{votePercentage} %</Text>
+        <Text fontSize="xm" fontWeight="bold">{votePercentage} %</Text>
       </CircularProgressLabel>
     </CircularProgress>
   )

@@ -68,8 +68,15 @@ const MovieContainer = ({ path }: Props) => {
       </GridItem>
       <GridItem area="aside" paddingX={2}>
         <MovieSortFilterSidebar onSortChange={
-          (sortingOption: string) => setMovieQuery({sortBy: sortingOption} as MovieQuery)
-          } />
+          (sortingOption: string) => setMovieQuery({...movieQuery, sortBy: sortingOption} as MovieQuery)
+        }
+        onDateFromChange={
+          (date: string) => setMovieQuery({...movieQuery, primaryReleaseDateGte: date} as MovieQuery)
+        }
+        onDateToChange={
+          (date: string) => setMovieQuery({...movieQuery, primaryReleaseDateLte: date} as MovieQuery)
+        }
+        />
       </GridItem>
       <GridItem area="content">
         <MovieGrid movieQuery={movieQuery} />

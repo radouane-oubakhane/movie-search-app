@@ -2,15 +2,26 @@ import { Button, Text } from "@chakra-ui/react"
 import useTVShowGenres from "../hooks/useTVShowGenres"
 
 
+interface Props {
+  onGenreChange: (genreId: string) => void;
+  selectedGenreIds:  string[];
+}
 
 
-const TVShowGenreList = () => {
+const TVShowGenreList = ({ onGenreChange, selectedGenreIds }: Props) => {
   const { genres, isLoading, isError } = useTVShowGenres()
 
   return (
     <ul>
       {genres.map((genre) => (
-        <Button colorScheme='gray' padding={2} margin={1} variant='outline' key={genre.id}>
+        <Button 
+        onClick={() => onGenreChange(genre.id.toString())}
+        colorScheme='gray' 
+        padding={2} 
+        margin={1} 
+        variant={selectedGenreIds.includes(genre.id.toString()) ? 'solid' : 'outline'} 
+        key={genre.id}
+        >
         <Text>{genre.name}</Text>
       </Button>
       ))}

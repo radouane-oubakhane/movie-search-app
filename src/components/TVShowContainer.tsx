@@ -13,7 +13,9 @@ export interface TVShowQuery {
     fistAirDateGte: string;
     firstAirDateLte: string;
     screenedTheatrically: boolean;
+    withGenres?: string;
   }
+
 
 
 
@@ -66,7 +68,8 @@ const TVShowContainer = ({ path }: Props) => {
         <ContainerHeading category="TV Shows" title={title} />
       </GridItem>
       <GridItem area="aside" paddingX={2}>
-        <TVShowSortFilterSidebar onSortChange={
+        <TVShowSortFilterSidebar 
+          onSortChange={
           (sortingOption: string) => setTVShowQuery({...tvShowQuery, sortBy: sortingOption} as TVShowQuery)
           }
           onDateFromChange={
@@ -75,6 +78,19 @@ const TVShowContainer = ({ path }: Props) => {
           onDateToChange={
             (date: string) => setTVShowQuery({...tvShowQuery, firstAirDateLte: date} as TVShowQuery)
           }
+          onGenreChange={
+            (genreId: string) => {
+              const genres = tvShowQuery.withGenres?.split(',');
+              if (!genres?.includes(genreId)) {
+                setTVShowQuery({...tvShowQuery, withGenres: `${tvShowQuery.withGenres ? tvShowQuery.withGenres + ',' : ''}${genreId}`} as TVShowQuery)
+              }
+              else {
+                const newGenres = genres.filter((genre) => genre !== genreId);
+                setTVShowQuery({...tvShowQuery, withGenres: newGenres.join(',')} as TVShowQuery)
+              }
+            }
+          }
+          selectedGenreIds={tvShowQuery.withGenres?.split(',') || []}
           />
       </GridItem>
       <GridItem area="content">
@@ -85,4 +101,6 @@ const TVShowContainer = ({ path }: Props) => {
 }
 
 export default TVShowContainer
+
+
 

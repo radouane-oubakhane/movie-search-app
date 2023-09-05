@@ -4,10 +4,12 @@ import TVShowGenreList from "./TVShowGenreList";
 interface Props {
     onDateFromChange: (date: string) => void;
     onDateToChange: (date: string) => void;
+    onGenreChange: (genreId: string) => void;
+    selectedGenreIds:  string[];
 }
 
 
-const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange }: Props) => {
+const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds }: Props) => {
   return (
     <Accordion defaultIndex={[0]} allowMultiple >
         <AccordionItem borderRadius="5px" boxShadow='md'>
@@ -49,7 +51,7 @@ const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange }: Props) => {
           <Divider />
           <AccordionPanel pb={4}> 
           <Text paddingBottom={3}>Genres</Text>
-          <TVShowGenreList />
+          <TVShowGenreList onGenreChange={onGenreChange} selectedGenreIds={selectedGenreIds} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

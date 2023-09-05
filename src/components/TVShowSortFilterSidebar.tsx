@@ -6,10 +6,12 @@ interface Props {
   onSortChange: (sortingOption: string) => void;
   onDateFromChange: (date: string) => void;
   onDateToChange: (date: string) => void;
+  onGenreChange: (genreId: string) => void;
+  selectedGenreIds:  string[];
 }
 
 
-const TVShowSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange }: Props) => {
+const TVShowSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds }: Props) => {
   const sortingOptions = [
     {label: 'Popularity Descending', value: 'popularity.desc'},
     {label: 'Popularity Ascending', value: 'popularity.asc'},
@@ -24,7 +26,12 @@ const TVShowSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChang
     align='stretch'
     >
       <SortingSelector sortingOptions={sortingOptions} onSortChange={onSortChange} />
-      <TVShowFiltersSelector onDateFromChange={onDateFromChange} onDateToChange={onDateToChange} />
+      <TVShowFiltersSelector 
+      onDateFromChange={onDateFromChange} 
+      onDateToChange={onDateToChange} 
+      onGenreChange={onGenreChange}
+      selectedGenreIds={selectedGenreIds}
+      />
     </VStack>
   )
 }

@@ -14,6 +14,7 @@ export interface TVShowQuery {
     firstAirDateLte: string;
     screenedTheatrically: boolean;
     withGenres?: string;
+    withOriginalLanguage?: string;
   }
 
 
@@ -90,7 +91,12 @@ const TVShowContainer = ({ path }: Props) => {
               }
             }
           }
-          selectedGenreIds={tvShowQuery.withGenres?.split(',') || []}
+          selectedGenreIds={
+            tvShowQuery.withGenres?.split(',') || []
+          }
+          onLanguageChange={
+            (languageOption: string) => setTVShowQuery({...tvShowQuery, withOriginalLanguage: languageOption} as TVShowQuery)
+          }
           />
       </GridItem>
       <GridItem area="content">

@@ -41,6 +41,7 @@ const useMediaContent = <T>(
                 'release_date.lte': query?.releaseDateLte,
                 'screened_theatrically': query?.screenedTheatrically,
                 'with_genres': query?.withGenres,
+                'with_original_language': query?.withOriginalLanguage,
             }
         })
         .then((response) => {

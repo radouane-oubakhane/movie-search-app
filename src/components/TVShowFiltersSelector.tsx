@@ -1,15 +1,17 @@
 import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Text, Input, HStack, SimpleGrid } from "@chakra-ui/react"
 import TVShowGenreList from "./TVShowGenreList";
+import LanguageSelector from "./LanguageSelector";
 
 interface Props {
     onDateFromChange: (date: string) => void;
     onDateToChange: (date: string) => void;
     onGenreChange: (genreId: string) => void;
     selectedGenreIds:  string[];
+    onLanguageChange: (languageOption: string) => void;
 }
 
 
-const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds }: Props) => {
+const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds, onLanguageChange }: Props) => {
   return (
     <Accordion defaultIndex={[0]} allowMultiple >
         <AccordionItem borderRadius="5px" boxShadow='md'>
@@ -52,6 +54,11 @@ const TVShowFiltersSelector = ({ onDateFromChange, onDateToChange, onGenreChange
           <AccordionPanel pb={4}> 
           <Text paddingBottom={3}>Genres</Text>
           <TVShowGenreList onGenreChange={onGenreChange} selectedGenreIds={selectedGenreIds} />
+          </AccordionPanel>
+          <Divider />
+          <AccordionPanel pb={4}> 
+            <Text paddingBottom={3}>Language</Text>
+            <LanguageSelector onLanguageChange={onLanguageChange} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

@@ -16,6 +16,7 @@ export interface MovieQuery {
     primaryReleaseDateLte?: string;
     releaseDateLte?: string;
     withGenres?: string;
+    withOriginalLanguage?: string;
 }
 
 
@@ -90,7 +91,12 @@ const MovieContainer = ({ path }: Props) => {
             }
           }
         }
-        selectedGenreIds={movieQuery.withGenres?.split(',') || []}
+        selectedGenreIds={
+          movieQuery.withGenres?.split(',') || []
+        }
+        onLanguageChange={
+          (languageOption: string) => setMovieQuery({...movieQuery, withOriginalLanguage: languageOption} as MovieQuery)
+        }
         />
       </GridItem>
       <GridItem area="content">

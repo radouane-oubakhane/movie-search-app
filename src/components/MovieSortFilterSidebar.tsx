@@ -11,10 +11,20 @@ interface Props {
   onGenreChange: (genreId: string) => void;
   selectedGenreIds:  string[];
   onLanguageChange: (languageOption: string) => void;
+  onUserScoreChange: (userScore: number[]) => void;
 }
 
 
-const MovieSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange, onGenreChange, selectedGenreIds, onLanguageChange }: Props) => {
+const MovieSortFilterSidebar = ({ 
+  onSortChange, 
+  onDateFromChange, 
+  onDateToChange, 
+  onGenreChange, 
+  selectedGenreIds, 
+  onLanguageChange,
+  onUserScoreChange 
+}: Props) => {
+
   const sortingOptions = [
     {label: 'Popularity Descending', value: 'popularity.desc'},
     {label: 'Popularity Ascending', value: 'popularity.asc'},
@@ -36,6 +46,7 @@ const MovieSortFilterSidebar = ({ onSortChange, onDateFromChange, onDateToChange
       onGenreChange={onGenreChange} 
       selectedGenreIds={selectedGenreIds}
       onLanguageChange={onLanguageChange}
+      onUserScoreChange={onUserScoreChange}
       />
     </VStack>
   )

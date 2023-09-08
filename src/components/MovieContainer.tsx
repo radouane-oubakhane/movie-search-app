@@ -17,6 +17,8 @@ export interface MovieQuery {
     releaseDateLte?: string;
     withGenres?: string;
     withOriginalLanguage?: string;
+    voteAverageGte?: number;
+    voteAverageLte?: number;
 }
 
 
@@ -96,6 +98,9 @@ const MovieContainer = ({ path }: Props) => {
         }
         onLanguageChange={
           (languageOption: string) => setMovieQuery({...movieQuery, withOriginalLanguage: languageOption} as MovieQuery)
+        }
+        onUserScoreChange={
+          (userScore: number[]) => setMovieQuery({...movieQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1]} as MovieQuery)
         }
         />
       </GridItem>

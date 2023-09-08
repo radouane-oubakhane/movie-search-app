@@ -15,6 +15,8 @@ export interface TVShowQuery {
     screenedTheatrically: boolean;
     withGenres?: string;
     withOriginalLanguage?: string;
+    voteAverageGte?: number;
+    voteAverageLte?: number;
   }
 
 
@@ -96,6 +98,9 @@ const TVShowContainer = ({ path }: Props) => {
           }
           onLanguageChange={
             (languageOption: string) => setTVShowQuery({...tvShowQuery, withOriginalLanguage: languageOption} as TVShowQuery)
+          }
+          onUserScoreChange={
+            (userScore: number[]) => setTVShowQuery({...tvShowQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1]} as TVShowQuery)
           }
           />
       </GridItem>

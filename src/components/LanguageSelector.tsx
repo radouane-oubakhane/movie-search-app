@@ -1,4 +1,4 @@
-import { VStack, Select, Text } from "@chakra-ui/react"
+import { VStack, Select } from "@chakra-ui/react"
 import useLanguages from "../hooks/useLanguages";
 
 

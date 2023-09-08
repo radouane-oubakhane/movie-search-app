@@ -42,7 +42,10 @@ const useMediaContent = <T>(
                 'screened_theatrically': query?.screenedTheatrically,
                 'with_genres': query?.withGenres,
                 'with_original_language': query?.withOriginalLanguage,
+                'vote_average.gte': query?.voteAverageGte,
+                'vote_average.lte': query?.voteAverageLte,
             }
+        
         })
         .then((response) => {
             setMediaContent(response.data.results);

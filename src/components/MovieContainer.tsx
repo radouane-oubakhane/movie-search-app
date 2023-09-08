@@ -19,6 +19,7 @@ export interface MovieQuery {
     withOriginalLanguage?: string;
     voteAverageGte?: number;
     voteAverageLte?: number;
+    voteCountGte?: number;
 }
 
 
@@ -101,6 +102,9 @@ const MovieContainer = ({ path }: Props) => {
         }
         onUserScoreChange={
           (userScore: number[]) => setMovieQuery({...movieQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1]} as MovieQuery)
+        }
+        onMinimumUserVotesChange={
+         (minimumUserVotes: number) => setMovieQuery({...movieQuery, voteCountGte: minimumUserVotes} as MovieQuery)
         }
         />
       </GridItem>

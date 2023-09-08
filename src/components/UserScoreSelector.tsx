@@ -8,7 +8,7 @@ interface Props {
 
 
 
-function UserScoreSelector({ onUserScoreChange }: Props) {
+const UserScoreSelector = ({ onUserScoreChange }: Props) => {
   const [sliderValue, setSliderValue] = useState([0, 10]);
 
   const handleSliderChange = (newValue: number[]) => {
@@ -32,18 +32,16 @@ function UserScoreSelector({ onUserScoreChange }: Props) {
                 max={10}
                 step={1}
             >
-                <RangeSliderTrack bg='blue.100'>
-                <RangeSliderFilledTrack bg='blue' />
+                <RangeSliderTrack bg='teal.100'>
+                <RangeSliderFilledTrack bg='teal' />
                 </RangeSliderTrack>
                 <RangeSliderThumb boxSize={3} index={0} />
                 <RangeSliderThumb boxSize={3} index={1} />
             </RangeSlider>
-      
             <Badge variant='subtle' colorScheme='gray'>
                 {sliderValue[1]}
             </Badge>
         </HStack>
-
     </VStack>
   );
 }

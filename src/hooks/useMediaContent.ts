@@ -44,6 +44,7 @@ const useMediaContent = <T>(
                 'with_original_language': query?.withOriginalLanguage,
                 'vote_average.gte': query?.voteAverageGte,
                 'vote_average.lte': query?.voteAverageLte,
+                'vote_count.gte': query?.voteCountGte,                
             }
         
         })

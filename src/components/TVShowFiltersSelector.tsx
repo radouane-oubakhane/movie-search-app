@@ -2,6 +2,7 @@ import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionI
 import TVShowGenreList from "./TVShowGenreList";
 import LanguageSelector from "./LanguageSelector";
 import UserScoreSelector from "./UserScoreSelector";
+import MinimumUserVotesSelector from "./MinimumUserVotesSelector";
 
 interface Props {
     onDateFromChange: (date: string) => void;
@@ -10,6 +11,7 @@ interface Props {
     selectedGenreIds:  string[];
     onLanguageChange: (languageOption: string) => void;
     onUserScoreChange: (userScore: number[]) => void;
+    onMinimumUserVotesChange: (minimumUserVotes: number) => void;
 }
 
 
@@ -19,7 +21,8 @@ const TVShowFiltersSelector = ({
   onGenreChange, 
   selectedGenreIds, 
   onLanguageChange,
-  onUserScoreChange
+  onUserScoreChange,
+  onMinimumUserVotesChange
  }: Props) => {
 
   return (
@@ -74,6 +77,11 @@ const TVShowFiltersSelector = ({
           <AccordionPanel pb={4}> 
             <Text paddingBottom={3}>User Score</Text>
             <UserScoreSelector onUserScoreChange={onUserScoreChange} />
+          </AccordionPanel>
+          <Divider />
+          <AccordionPanel pb={4}> 
+            <Text paddingBottom={3}>Minimum User Votes</Text>
+            <MinimumUserVotesSelector onUserScoreChange={onMinimumUserVotesChange} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

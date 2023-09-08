@@ -10,6 +10,7 @@ interface Props {
   selectedGenreIds:  string[];
   onLanguageChange: (languageOption: string) => void;
   onUserScoreChange: (userScore: number[]) => void;
+  onMinimumUserVotesChange: (minimumUserVotes: number) => void;
 }
 
 
@@ -20,7 +21,8 @@ const TVShowSortFilterSidebar = ({
   onGenreChange, 
   selectedGenreIds, 
   onLanguageChange,
-  onUserScoreChange
+  onUserScoreChange,
+  onMinimumUserVotesChange
  }: Props) => {
 
   const sortingOptions = [
@@ -44,6 +46,7 @@ const TVShowSortFilterSidebar = ({
       selectedGenreIds={selectedGenreIds}
       onLanguageChange={onLanguageChange}
       onUserScoreChange={onUserScoreChange}
+      onMinimumUserVotesChange={onMinimumUserVotesChange}
       />
     </VStack>
   )

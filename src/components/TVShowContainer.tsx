@@ -17,6 +17,7 @@ export interface TVShowQuery {
     withOriginalLanguage?: string;
     voteAverageGte?: number;
     voteAverageLte?: number;
+    voteCountGte?: number;
   }
 
 
@@ -101,6 +102,9 @@ const TVShowContainer = ({ path }: Props) => {
           }
           onUserScoreChange={
             (userScore: number[]) => setTVShowQuery({...tvShowQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1]} as TVShowQuery)
+          }
+          onMinimumUserVotesChange={
+            (minimumUserVotes: number) => setTVShowQuery({...tvShowQuery, voteCountGte: minimumUserVotes} as TVShowQuery)
           }
           />
       </GridItem>

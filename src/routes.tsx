@@ -3,6 +3,7 @@ import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import MediaSortingAndSelectionPage from "./pages/MediaSortingAndSelectionPage";
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 const router = createBrowserRouter([
     {
@@ -10,7 +11,9 @@ const router = createBrowserRouter([
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
+
             { index: true, element: <HomePage /> },
+            
             {path: 'movie/popular', element: <MediaSortingAndSelectionPage />},
             {path: 'movie/top-rated', element: <MediaSortingAndSelectionPage />},
             {path: 'movie/upcoming', element: <MediaSortingAndSelectionPage />},
@@ -20,6 +23,9 @@ const router = createBrowserRouter([
             {path: 'tv/top-rated', element: <MediaSortingAndSelectionPage />},
             {path: 'tv/on-the-air', element: <MediaSortingAndSelectionPage />},
             {path: 'tv/airing-today', element: <MediaSortingAndSelectionPage />},
+
+            
+            {path: 'search', element: <SearchResultsPage />},
         ]
     }
 ])

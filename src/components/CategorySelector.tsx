@@ -13,7 +13,7 @@ const CategorySelector = ({ title, route, categories, setCategory }: Props) => {
   return (
     <Menu>
   <MenuButton>
-    <Heading as='b' size='sm'>{title}</Heading>
+    <Heading as='b' size='sm' whiteSpace='nowrap'>{title}</Heading>
   </MenuButton>
   <MenuList>
     {categories.map((category, index) => (

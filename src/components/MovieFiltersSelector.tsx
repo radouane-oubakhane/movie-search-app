@@ -30,8 +30,8 @@ const MovieFiltersSelector = ({
   onKeywordChange
    }: Props) => {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple >
-        <AccordionItem borderRadius="5px" boxShadow='md'>
+    <Accordion defaultIndex={[0]} allowMultiple boxShadow='md'>
+        <AccordionItem borderRadius="5px">
           <h1>
             <AccordionButton>
               <Box as="span" flex='1' textAlign='left'>

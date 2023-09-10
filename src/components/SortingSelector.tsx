@@ -8,8 +8,8 @@ interface Props {
 
 const SortingSelector = ({ sortingOptions, onSortChange }: Props) => {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple >
-        <AccordionItem borderRadius="5px" boxShadow='md'>
+    <Accordion defaultIndex={[1]} allowMultiple boxShadow='md'>
+        <AccordionItem borderRadius="5px">
           <h2>
             <AccordionButton>
               <Box as="span" flex='1' textAlign='left'>

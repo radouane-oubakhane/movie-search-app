@@ -1,4 +1,4 @@
-import { VStack, Select } from "@chakra-ui/react"
+import { Select } from "@chakra-ui/react"
 import useLanguages from "../hooks/useLanguages";
 
 
@@ -14,10 +14,6 @@ const LanguageSelector = ({ onLanguageChange }: Props) => {
     if (error) return null;
 
     return (
-        <VStack
-        spacing={4}
-        align='stretch'
-        >
         <Select
         placeholder="Select Language"
          onChange={(event) => onLanguageChange(event.target.value)}>
@@ -25,7 +21,6 @@ const LanguageSelector = ({ onLanguageChange }: Props) => {
             <option key={index} value={language.iso_639_1}>{language.english_name}</option>))
             }
         </Select> 
-        </VStack>
     )
 }
 

@@ -18,6 +18,8 @@ export interface TVShowQuery {
     voteAverageGte?: number;
     voteAverageLte?: number;
     voteCountGte?: number;
+    withRuntimeGte?: number;
+    withRuntimeLte?: number;
   }
 
 
@@ -105,6 +107,9 @@ const TVShowContainer = ({ path }: Props) => {
           }
           onMinimumUserVotesChange={
             (minimumUserVotes: number) => setTVShowQuery({...tvShowQuery, voteCountGte: minimumUserVotes} as TVShowQuery)
+          }
+          onRuntimeChange={
+            (runtime: number[]) => setTVShowQuery({...tvShowQuery, withRuntimeGte: runtime[0], withRuntimeLte: runtime[1]} as TVShowQuery)
           }
           />
       </GridItem>

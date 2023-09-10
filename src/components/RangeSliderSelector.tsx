@@ -1,35 +1,35 @@
 import { useState } from 'react';
-import { VStack, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Badge, Tooltip, SliderThumb, HStack } from '@chakra-ui/react';
+import { RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Badge, HStack } from '@chakra-ui/react';
 
 
 interface Props {
-    onUserScoreChange: (userScore: number[]) => void;
+    min: number;
+    max: number;
+    onRangeChange: (userScore: number[]) => void;
 }
 
 
 
-const UserScoreSelector = ({ onUserScoreChange }: Props) => {
+const RangeSliderSelector = ({ onRangeChange, min, max }: Props) => {
   const [sliderValue, setSliderValue] = useState([0, 10]);
 
   const handleSliderChange = (newValue: number[]) => {
-        onUserScoreChange(newValue);
+        onRangeChange(newValue);
         setSliderValue(newValue);
   };
 
   
 
   return (
-    <VStack spacing={4} align='stretch'>
         <HStack spacing={4}>
-
             <Badge variant='subtle' colorScheme='gray'>
             {sliderValue[0]}
             </Badge>
             <RangeSlider
                 value={sliderValue}
                 onChange={(newValue => handleSliderChange(newValue))} 
-                min={0}
-                max={10}
+                min={min}
+                max={max}
                 step={1}
             >
                 <RangeSliderTrack bg='teal.100'>
@@ -42,10 +42,10 @@ const UserScoreSelector = ({ onUserScoreChange }: Props) => {
                 {sliderValue[1]}
             </Badge>
         </HStack>
-    </VStack>
   );
 }
 
-export default UserScoreSelector;
+export default RangeSliderSelector;
+
 
 

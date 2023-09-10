@@ -1,8 +1,8 @@
 import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Text, Input, HStack, SimpleGrid } from "@chakra-ui/react"
 import TVShowGenreList from "./TVShowGenreList";
 import LanguageSelector from "./LanguageSelector";
-import UserScoreSelector from "./UserScoreSelector";
 import MinimumUserVotesSelector from "./MinimumUserVotesSelector";
+import RangeSliderSelector from "./RangeSliderSelector";
 
 interface Props {
     onDateFromChange: (date: string) => void;
@@ -12,6 +12,7 @@ interface Props {
     onLanguageChange: (languageOption: string) => void;
     onUserScoreChange: (userScore: number[]) => void;
     onMinimumUserVotesChange: (minimumUserVotes: number) => void;
+    onRuntimeChange: (runtime: number[]) => void;
 }
 
 
@@ -22,7 +23,8 @@ const TVShowFiltersSelector = ({
   selectedGenreIds, 
   onLanguageChange,
   onUserScoreChange,
-  onMinimumUserVotesChange
+  onMinimumUserVotesChange,
+  onRuntimeChange
  }: Props) => {
 
   return (
@@ -76,12 +78,17 @@ const TVShowFiltersSelector = ({
           <Divider />
           <AccordionPanel pb={4}> 
             <Text paddingBottom={3}>User Score</Text>
-            <UserScoreSelector onUserScoreChange={onUserScoreChange} />
+            <RangeSliderSelector min={0} max={10} onRangeChange={onUserScoreChange} />
           </AccordionPanel>
           <Divider />
           <AccordionPanel pb={4}> 
             <Text paddingBottom={3}>Minimum User Votes</Text>
             <MinimumUserVotesSelector onUserScoreChange={onMinimumUserVotesChange} />
+          </AccordionPanel>
+          <Divider />
+          <AccordionPanel pb={4}> 
+            <Text paddingBottom={3}>Runtime</Text>
+            <RangeSliderSelector min={0} max={400} onRangeChange={onRuntimeChange} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

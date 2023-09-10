@@ -20,6 +20,8 @@ export interface MovieQuery {
     voteAverageGte?: number;
     voteAverageLte?: number;
     voteCountGte?: number;
+    withRuntimeGte?: number;
+    withRuntimeLte?: number;
 }
 
 
@@ -105,6 +107,9 @@ const MovieContainer = ({ path }: Props) => {
         }
         onMinimumUserVotesChange={
          (minimumUserVotes: number) => setMovieQuery({...movieQuery, voteCountGte: minimumUserVotes} as MovieQuery)
+        }
+        onRuntimeChange={
+          (runtime: number[]) => setMovieQuery({...movieQuery, withRuntimeGte: (runtime[0] * 1000 * 60), withRuntimeLte: (runtime[1] * 1000 * 60)} as MovieQuery)
         }
         />
       </GridItem>

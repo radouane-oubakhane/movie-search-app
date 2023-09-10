@@ -22,6 +22,7 @@ export interface MovieQuery {
     voteCountGte?: number;
     withRuntimeGte?: number;
     withRuntimeLte?: number;
+    withKeywords?: string;
 }
 
 
@@ -110,6 +111,9 @@ const MovieContainer = ({ path }: Props) => {
         }
         onRuntimeChange={
           (runtime: number[]) => setMovieQuery({...movieQuery, withRuntimeGte: (runtime[0] * 1000 * 60), withRuntimeLte: (runtime[1] * 1000 * 60)} as MovieQuery)
+        }
+        onKeywordChange={
+          (keywords: string) => setMovieQuery({...movieQuery, withKeywords: keywords} as MovieQuery)
         }
         />
       </GridItem>

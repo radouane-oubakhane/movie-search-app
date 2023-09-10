@@ -20,6 +20,7 @@ export interface TVShowQuery {
     voteCountGte?: number;
     withRuntimeGte?: number;
     withRuntimeLte?: number;
+    withKeywords?: string;
   }
 
 
@@ -110,6 +111,9 @@ const TVShowContainer = ({ path }: Props) => {
           }
           onRuntimeChange={
             (runtime: number[]) => setTVShowQuery({...tvShowQuery, withRuntimeGte: runtime[0], withRuntimeLte: runtime[1]} as TVShowQuery)
+          }
+          onKeywordChange={
+            (keywords: string) => setTVShowQuery({...tvShowQuery, withKeywords: keywords} as TVShowQuery)
           }
           />
       </GridItem>

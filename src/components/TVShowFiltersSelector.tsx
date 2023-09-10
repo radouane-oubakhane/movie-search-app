@@ -3,6 +3,7 @@ import TVShowGenreList from "./TVShowGenreList";
 import LanguageSelector from "./LanguageSelector";
 import MinimumUserVotesSelector from "./MinimumUserVotesSelector";
 import RangeSliderSelector from "./RangeSliderSelector";
+import KeywordInput from "./KeywordInput";
 
 interface Props {
     onDateFromChange: (date: string) => void;
@@ -13,6 +14,7 @@ interface Props {
     onUserScoreChange: (userScore: number[]) => void;
     onMinimumUserVotesChange: (minimumUserVotes: number) => void;
     onRuntimeChange: (runtime: number[]) => void;
+    onKeywordChange: (keywords: string) => void;
 }
 
 
@@ -24,7 +26,8 @@ const TVShowFiltersSelector = ({
   onLanguageChange,
   onUserScoreChange,
   onMinimumUserVotesChange,
-  onRuntimeChange
+  onRuntimeChange,
+  onKeywordChange
  }: Props) => {
 
   return (
@@ -89,6 +92,11 @@ const TVShowFiltersSelector = ({
           <AccordionPanel pb={4}> 
             <Text paddingBottom={3}>Runtime</Text>
             <RangeSliderSelector min={0} max={400} onRangeChange={onRuntimeChange} />
+          </AccordionPanel>
+          <Divider />
+          <AccordionPanel pb={4}> 
+            <Text paddingBottom={3}>Keywords</Text>
+            <KeywordInput onKeywordChange={onKeywordChange} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

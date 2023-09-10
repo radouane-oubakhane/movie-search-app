@@ -46,7 +46,8 @@ const useMediaContent = <T>(
                 'vote_average.lte': query?.voteAverageLte,
                 'vote_count.gte': query?.voteCountGte,
                 'with_runtime.lte': query?.withRuntimeLte,
-                'with_runtime.gte': query?.withRuntimeGte,                
+                'with_runtime.gte': query?.withRuntimeGte,
+                'with_keywords': query?.withKeywords,                
             }
         
         })

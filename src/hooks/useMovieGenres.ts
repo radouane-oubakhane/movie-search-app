@@ -7,7 +7,7 @@ import movieGenres from "../data/movie-genres";
 
 // const useMovieGenres = () => useGenres('/genre/movie/list')
 
-const useMovieGenres = () => ({genres: movieGenres, isLoading: false, error: false})
+const useMovieGenres = () => ({genres: movieGenres, isLoading: false, error: null})
 
 
 

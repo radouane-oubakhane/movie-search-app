@@ -31,7 +31,7 @@ const TVShowFiltersSelector = ({
  }: Props) => {
 
   return (
-    <Accordion defaultIndex={[0]} allowMultiple >
+    <Accordion defaultIndex={[0]} allowMultiple marginBottom={8}>
         <AccordionItem borderRadius="5px" boxShadow='md'>
           <h1>
             <AccordionButton>

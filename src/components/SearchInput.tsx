@@ -28,7 +28,7 @@ const SearchInput = () => {
         ref={searchTermRef}
         borderRadius={20}
         variant='filled'
-        placeholder='Search for a movie, tv show......' 
+        placeholder='Search for a movie, tv show, person...'
         />
       </form>
     </Box>

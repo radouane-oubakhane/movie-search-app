@@ -3,6 +3,7 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 import { MovieQuery } from "../components/MovieContainer";
 import { TVShowQuery } from "../components/TVShowContainer";
+import { QuerySearch } from "../pages/SearchResultsPage";
 
 
 
@@ -11,6 +12,7 @@ import { TVShowQuery } from "../components/TVShowContainer";
 interface FetchResponse<T> {
     page: number;
     results: T[];
+    total_results: number;
 }
 
 
@@ -18,12 +20,13 @@ interface FetchResponse<T> {
 const useMediaContent = <T>(
     endpoint: string, 
     selectedTimeWindow: 'day' | 'week' | null, 
-    query?: MovieQuery & TVShowQuery, 
+    query?: MovieQuery & TVShowQuery & QuerySearch, 
     ) => {
 
     const [mediaContent, setMediaContent] = useState<T[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('') 
+    const [totalResults, setTotalResults] = useState(0);
 
     const selectedTimeWindowUrl = selectedTimeWindow ? '/' + selectedTimeWindow : '';
 
@@ -47,12 +50,14 @@ const useMediaContent = <T>(
                 'vote_count.gte': query?.voteCountGte,
                 'with_runtime.lte': query?.withRuntimeLte,
                 'with_runtime.gte': query?.withRuntimeGte,
-                'with_keywords': query?.withKeywords,                
+                'with_keywords': query?.withKeywords,  
+                'query': query?.query,              
             }
         
         })
         .then((response) => {
             setMediaContent(response.data.results);
+            setTotalResults(response.data.total_results);
             setIsLoading(false);
             setError('');
         })
@@ -66,7 +71,7 @@ const useMediaContent = <T>(
         
     }, [selectedTimeWindowUrl, endpoint, query]);
 
-    return { mediaContent, isLoading, error };
+    return { mediaContent, isLoading, error, totalResults };
 }
 
 

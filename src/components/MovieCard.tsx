@@ -13,8 +13,9 @@ interface Props {
 const MovieCard = ({ movie }: Props) => {
   return (
     <VStack 
-    spacing={4}
-    align='stretch'>
+      spacing={4}
+      align='stretch'
+    >
       <Image boxShadow='md' borderRadius={10} overflow='hidden' 
       objectFit='cover'
       src={getImageUrl(movie.poster_path, 'w300')} 

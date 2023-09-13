@@ -30,7 +30,7 @@ const MovieFiltersSelector = ({
   onKeywordChange
    }: Props) => {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple boxShadow='md'>
+    <Accordion defaultIndex={[0]} allowMultiple boxShadow='md' marginBottom={8}>
         <AccordionItem borderRadius="5px">
           <h1>
             <AccordionButton>
@@ -98,7 +98,7 @@ const MovieFiltersSelector = ({
             <KeywordInput onKeywordChange={onKeywordChange} />
           </AccordionPanel>
         </AccordionItem>
-      </Accordion>
+    </Accordion>
   )
 }
 

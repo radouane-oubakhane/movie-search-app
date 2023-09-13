@@ -1,6 +1,5 @@
 import { CardBody, Image, Stack, Heading, Text, CardFooter } from "@chakra-ui/react"
 import getImageUrl from "../services/image-url";
-import formatDate from "../services/format-date";
 import { Collection } from "../hooks/useSearchCollections";
 
 

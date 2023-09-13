@@ -9,7 +9,7 @@ interface Props {
 
 
 const TVShowGenreList = ({ onGenreChange, selectedGenreIds }: Props) => {
-  const { genres, isLoading, isError } = useTVShowGenres()
+  const { genres } = useTVShowGenres()
 
   return (
     <ul>

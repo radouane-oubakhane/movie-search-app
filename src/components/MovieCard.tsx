@@ -1,8 +1,8 @@
 import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
-import { Movie } from "../hooks/useMovies";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import formatDate from "../services/format-date";
+import { Movie } from "../hooks/useTrendingMovies";
 
 interface Props {
     movie: Movie;

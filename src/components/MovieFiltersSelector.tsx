@@ -1,4 +1,4 @@
-import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Text, Input, HStack, SimpleGrid } from "@chakra-ui/react"
+import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Text, Input, SimpleGrid } from "@chakra-ui/react"
 import MovieGenreList from "./MovieGenreList";
 import LanguageSelector from "./LanguageSelector";
 import MinimumUserVotesSelector from "./MinimumUserVotesSelector";

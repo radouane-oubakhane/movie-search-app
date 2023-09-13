@@ -9,7 +9,7 @@ interface Props {
 
 
 const MovieGenreList = ({ onGenreChange, selectedGenreIds }: Props) => {
-  const { genres, isLoading, isError } = useMovieGenres()
+  const { genres } = useMovieGenres()
 
   return (
     <ul>

@@ -1,4 +1,4 @@
-import { SimpleGrid, HStack, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 
 import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";

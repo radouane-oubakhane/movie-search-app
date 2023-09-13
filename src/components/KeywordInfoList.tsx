@@ -1,4 +1,4 @@
-import { Text, ListItem, UnorderedList, Skeleton, Box } from "@chakra-ui/react";
+import { Text, ListItem, UnorderedList, Skeleton } from "@chakra-ui/react";
 
 import { keyword } from "../hooks/useSearchKeywords";
 

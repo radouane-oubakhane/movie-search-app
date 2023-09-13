@@ -1,5 +1,5 @@
-import useGenres from "./useGenres";
 import movieGenres from "../data/movie-genres";
+// import useGenres from "./useGenres";
 
 
 

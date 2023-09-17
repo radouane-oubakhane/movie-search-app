@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { useQuery } from "@tanstack/react-query";
+import movieGenres from "../data/movie-genres";
+import tvShowGenres from "../data/tv-show-genres";
 
 
 
@@ -14,34 +15,16 @@ interface FetchGenresResponse {
 }
 
 
-const useGenres = (endpoint: string) => {
-    const [genres, setGenres] = useState<Genre[]>([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState('') 
+const useGenres = (endpoint: string, queryKey: string[]) => useQuery({
+    queryKey: queryKey,
+    queryFn: () => apiClient
+                        .get<FetchGenresResponse>(endpoint)
+                        .then((response) => response.data.genres),
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    initialData: queryKey[0] === 'movie-genres' ? movieGenres : tvShowGenres,
 
-    useEffect(() => {
-        const controller = new AbortController()
-        apiClient
-        .get<FetchGenresResponse>(endpoint, { signal: controller.signal })
-        .then((response) => {
-            setGenres(response.data.genres)
-            setIsLoading(false)
-        })
-        .catch((error) => {
-            if (error instanceof CanceledError) return;
-            setError(error.message)
-            setIsLoading(false)
-        })
+})
 
-        return () => controller.abort()
-        
-    }, [])
-
-    return { genres, isLoading, error }
-
-
-}
-
-
-
+    
 export default useGenres;
+

@@ -1,14 +1,8 @@
-import movieGenres from "../data/movie-genres";
-// import useGenres from "./useGenres";
+import useGenres from "./useGenres";
 
 
 
-
-
-// const useMovieGenres = () => useGenres('/genre/movie/list')
-
-const useMovieGenres = () => ({genres: movieGenres, isLoading: false, error: null})
-
+const useMovieGenres = () => useGenres('/genre/movie/list', ['movie-genres'])
 
 
 export default useMovieGenres;

@@ -9,7 +9,7 @@ interface Props {
 
 
 const LanguageSelector = ({ onLanguageChange }: Props) => {
-    const { languages, error } = useLanguages();
+    const { data: languages, error } = useLanguages();
 
     if (error) return null;
 

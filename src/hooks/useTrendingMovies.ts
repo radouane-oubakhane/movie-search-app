@@ -12,6 +12,10 @@ export interface Movie {
 
 
 
-const useTrendingMovies = (selectedTimeWindow: 'day' | 'week') => useMediaContent<Movie>('/trending/movie', selectedTimeWindow);
+const useTrendingMovies = (selectedTimeWindow: 'day' | 'week') => useMediaContent<Movie>(
+        '/trending/movie', 
+        selectedTimeWindow, 
+        "trending-movies"
+    );
 
 export default useTrendingMovies;

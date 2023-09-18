@@ -8,7 +8,7 @@ import MovieInfoBox from "./MovieInfoBox";
 interface Props {
   movies: Movie[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

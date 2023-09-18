@@ -8,6 +8,10 @@ import { Movie } from "./useTrendingMovies";
 
 
 
-const useMovies = (movieQuery: MovieQuery) => useMediaContent<Movie>('/discover/movie', null, movieQuery as (MovieQuery & TVShowQuery & QuerySearch));
+const useMovies = (movieQuery: MovieQuery) => useMediaContent<Movie>(
+        '/discover/movie', 
+        null, 
+        "movies", movieQuery as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useMovies;

@@ -17,6 +17,11 @@ export interface keyword {
 
 
 
-const useSearchPerson = (querySearch: QuerySearch) => useMediaContent<keyword>('/search/keyword', null, querySearch as (MovieQuery & TVShowQuery & QuerySearch));
+const useSearchPerson = (querySearch: QuerySearch) => useMediaContent<keyword>(
+        '/search/keyword', 
+        null, 
+        "search-keywords", 
+        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useSearchPerson;

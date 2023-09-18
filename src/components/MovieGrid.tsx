@@ -14,12 +14,12 @@ interface Props {
 
 
 const MovieGrid = ({ movieQuery }: Props) => {
-    const { mediaContent: movies, isLoading, error } = useMovies(movieQuery);
+    const { data: movies, isLoading, error } = useMovies(movieQuery);
 
     const skeletons = Array(12).fill(0);
     
 
-    if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>
+    if (error) return <Text fontSize='2xl' textAlign='center'>{error.message}</Text>
     
     return (
         <>
@@ -29,7 +29,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {movies.map((movie) => (
+                {movies?.results.map((movie) => (
                     <CardContainer key={movie.id}>
                         <MovieCard movie={movie} />
                     </CardContainer>

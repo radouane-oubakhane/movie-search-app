@@ -15,6 +15,11 @@ export interface Collection {
 
 
 
-const useSearchCollections = (querySearch: QuerySearch) => useMediaContent<Collection>('/search/collection', null, querySearch as (MovieQuery & TVShowQuery & QuerySearch));
+const useSearchCollections = (querySearch: QuerySearch) => useMediaContent<Collection>(
+        '/search/collection', 
+        null, 
+        "search-collections", 
+        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useSearchCollections;

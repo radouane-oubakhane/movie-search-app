@@ -8,7 +8,7 @@ import PersonInfoBoxSkeleton from "./PersonInfoBoxSkeleton";
 interface Props {
   people: Person[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

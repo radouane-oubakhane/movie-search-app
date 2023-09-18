@@ -11,10 +11,10 @@ import useTrendingTVShows from "../hooks/useTrendingTVShows";
 
 const TVShowGrid = () => {
     const [selectedTimeWindow, setSelectedTimeWindow] = useState<'day' | 'week'>('day');
-    const { mediaContent: tvShows, isLoading, error } = useTrendingTVShows(selectedTimeWindow);
+    const { data: tvShows, isLoading, error } = useTrendingTVShows(selectedTimeWindow);
     const skeletons = Array(12).fill(0)
 
-    if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>
+    if (error) return <Text fontSize='2xl' textAlign='center'>{error.message}</Text>
     
     return (
         <>
@@ -28,7 +28,7 @@ const TVShowGrid = () => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {tvShows.slice(0, 12).map((tvShow) => (
+                {tvShows?.results.slice(0, 12).map((tvShow) => (
                     <CardContainer key={tvShow.id}>
                         <TVShowCard tvShow={tvShow} />
                     </CardContainer>

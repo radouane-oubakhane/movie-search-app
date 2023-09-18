@@ -19,6 +19,11 @@ export interface Company {
 
 
 
-const useSearchCompanies = (querySearch: QuerySearch) => useMediaContent<Company>('/search/company', null, querySearch as (MovieQuery & TVShowQuery & QuerySearch));
+const useSearchCompanies = (querySearch: QuerySearch) => useMediaContent<Company>(
+        '/search/company', 
+        null, 
+        "search-companies", 
+        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useSearchCompanies;

@@ -11,10 +11,10 @@ import { useState } from "react";
 
 const MovieGrid = () => {
     const [selectedTimeWindow, setSelectedTimeWindow] = useState<'day' | 'week'>('day');
-    const { mediaContent: movies, isLoading, error } = useTrendingMovies(selectedTimeWindow);
+    const { data: movies, isLoading, error } = useTrendingMovies(selectedTimeWindow);
     const skeletons = Array(12).fill(0)
 
-    if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>
+    if (error) return <Text fontSize='2xl' textAlign='center'>{error.message}</Text>
     
     return (
         <>
@@ -28,7 +28,7 @@ const MovieGrid = () => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {movies.slice(0, 12).map((movie) => (
+                {movies?.results.slice(0, 12).map((movie) => (
                     <CardContainer key={movie.id}>
                         <MovieCard movie={movie} />
                     </CardContainer>

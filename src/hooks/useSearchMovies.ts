@@ -11,6 +11,11 @@ import { Movie } from "./useTrendingMovies";
 
 
 
-const useSearchMovies = (querySearch: QuerySearch) => useMediaContent<Movie>('/search/movie', null, querySearch as (MovieQuery & TVShowQuery & QuerySearch));
+const useSearchMovies = (querySearch: QuerySearch) => useMediaContent<Movie>(
+        '/search/movie', 
+        null, 
+        "search-movies", 
+        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useSearchMovies;

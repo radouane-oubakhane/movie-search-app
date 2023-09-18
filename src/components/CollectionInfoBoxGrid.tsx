@@ -8,7 +8,7 @@ import CollectionInfoBox from "./CollectionInfoBox";
 interface Props {
   collections: Collection[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

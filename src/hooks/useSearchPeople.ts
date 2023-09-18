@@ -23,6 +23,11 @@ export interface Person {
 
 
 
-const useSearchPeople = (querySearch: QuerySearch) => useMediaContent<Person>('/search/person', null, querySearch as (MovieQuery & TVShowQuery & QuerySearch));
+const useSearchPeople = (querySearch: QuerySearch) => useMediaContent<Person>(
+        '/search/person', 
+        null, 
+        "search-people", 
+        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useSearchPeople;

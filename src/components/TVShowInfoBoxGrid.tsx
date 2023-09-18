@@ -10,7 +10,7 @@ import InfoBoxSkeleton from "./InfoBoxSkeleton";
 interface Props {
   tvShows: TVShow[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

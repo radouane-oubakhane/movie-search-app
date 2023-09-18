@@ -6,7 +6,7 @@ import { keyword } from "../hooks/useSearchKeywords";
 interface Props {
   keywords: keyword[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

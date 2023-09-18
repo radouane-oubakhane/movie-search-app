@@ -6,7 +6,7 @@ import getImageUrl from "../services/image-url";
 interface Props {
   companies: Company[];
   isLoading: boolean;
-  error: string | null;
+  error: string | undefined;
 }
 
 

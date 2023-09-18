@@ -12,6 +12,11 @@ import { TVShow } from "./useTrendingTVShows";
 
 
 
-const useTVShows = (tvShowQuery: TVShowQuery) => useMediaContent<TVShow>('/discover/tv', null, tvShowQuery as (MovieQuery & TVShowQuery & QuerySearch));
+const useTVShows = (tvShowQuery: TVShowQuery) => useMediaContent<TVShow>(
+        '/discover/tv', 
+        null, 
+        "tv-shows", 
+        tvShowQuery as (MovieQuery & TVShowQuery & QuerySearch)
+    );
 
 export default useTVShows;

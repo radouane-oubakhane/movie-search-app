@@ -14,11 +14,11 @@ interface Props {
 
 
 const TVShowGrid = ({ tvShowQuery }: Props) => {
-    const { mediaContent: tvShows, isLoading, error } = useTVShows(tvShowQuery);
+    const { data: tvShows, isLoading, error } = useTVShows(tvShowQuery);
     const skeletons = Array(12).fill(0);
     
 
-    if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>
+    if (error) return <Text fontSize='2xl' textAlign='center'>{error.message}</Text>
     
     return (
         <>
@@ -28,7 +28,7 @@ const TVShowGrid = ({ tvShowQuery }: Props) => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {tvShows.map((tvShow) => (
+                {tvShows?.results.map((tvShow) => (
                     <CardContainer key={tvShow.id}>
                         <TVShowCard tvShow={tvShow} />
                     </CardContainer>

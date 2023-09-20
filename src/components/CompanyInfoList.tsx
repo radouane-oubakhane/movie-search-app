@@ -1,60 +1,90 @@
-import { Text, Image, Skeleton, VStack, StackDivider, HStack, Badge } from "@chakra-ui/react";
+import {
+  Badge,
+  Divider,
+  HStack,
+  Image,
+  Skeleton,
+  Spinner,
+  Text,
+  VStack
+} from "@chakra-ui/react";
+import { InfiniteData } from "@tanstack/react-query";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FetchResponse } from "../hooks/useMediaContent";
 import { Company } from "../hooks/useSearchCompanies";
 import getImageUrl from "../services/image-url";
 
-
 interface Props {
-  companies: Company[];
+  companies: InfiniteData<FetchResponse<Company>>;
   isLoading: boolean;
   error: string | undefined;
+  fetchNextPage: () => void;
+  hasNextPage: boolean | undefined;
 }
 
-
-const CompanyInfoList = ({ companies, isLoading, error }: Props) => {
+const CompanyInfoList = ({
+  companies,
+  isLoading,
+  error,
+  fetchNextPage,
+  hasNextPage,
+}: Props) => {
   const skeletons = Array(12).fill(0);
 
+  if (error)
+    return (
+      <Text fontSize="2xl" textAlign="center">
+        {error}
+      </Text>
+    );
 
-  if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>;
-
+  const fetchedCompaniesCount = companies.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
-    <>
-      <VStack
-        spacing={4}
-        align='stretch'
-      >
-        {
-          isLoading && skeletons.map((_, index) => (
+    <InfiniteScroll
+      dataLength={fetchedCompaniesCount}
+      hasMore={!!hasNextPage}
+      next={() => fetchNextPage()}
+      loader={<Spinner />}
+    >
+      <VStack spacing={4} align="stretch">
+        {isLoading &&
+          skeletons.map((_, index) => (
             <Text boxShadow="md" padding={4} key={index}>
-              <Skeleton height='10px' />
+              <Skeleton height="10px" />
             </Text>
-          ))
-        }
+          ))}
       </VStack>
-    
 
-      <VStack
-        divider={<StackDivider borderColor='gray.200' />}
-        spacing={4}
-        align='stretch'
-      >
-        {
-          companies.map((company) => (
-            <HStack spacing='24px' key={company.id}>
-              {!company.logo_path && <Text>{company.name}</Text>}
-              {company.logo_path &&
-                <Image
-                objectFit='cover'
-                maxW={{ base: '100%', sm: '60px' }}
-                src={getImageUrl(company.logo_path, 'w300')} 
-                alt={`${company.name} logo`}
-              />}
-              <Badge size="lg">{company.origin_country}</Badge>
-            </HStack>))
-        }
+      <VStack spacing={4} align="stretch">
+        {companies.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((company) => (
+              <React.Fragment key={company.id}>
+                <HStack spacing="24px">
+                  {!company.logo_path && <Text>{company.name}</Text>}
+                  {company.logo_path && (
+                    <Image
+                      objectFit="cover"
+                      maxW={{ base: "100%", sm: "60px" }}
+                      src={getImageUrl(company.logo_path, "w300")}
+                      alt={`${company.name} logo`}
+                    />
+                  )}
+                  <Badge size="lg">{company.origin_country}</Badge>
+                </HStack>
+                <Divider />
+              </React.Fragment>
+            ))}
+          </React.Fragment>
+        ))}
       </VStack>
-    </>
-  )
-}
+    </InfiniteScroll>
+  );
+};
 
-export default CompanyInfoList
+export default CompanyInfoList;

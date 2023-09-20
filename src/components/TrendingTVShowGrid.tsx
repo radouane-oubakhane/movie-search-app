@@ -6,6 +6,7 @@ import CardContainer from "./CardContainer";
 import TrendingContentSelector from "./TrendingContentSelector";
 import { useState } from "react";
 import useTrendingTVShows from "../hooks/useTrendingTVShows";
+import React from "react";
 
 
 
@@ -28,11 +29,17 @@ const TVShowGrid = () => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {tvShows?.results.slice(0, 12).map((tvShow) => (
-                    <CardContainer key={tvShow.id}>
-                        <TVShowCard tvShow={tvShow} />
-                    </CardContainer>
-                ))}
+                {
+                    tvShows?.pages.map((page, index) => (
+                        <React.Fragment key={index}>
+                            {page.results.map((tvShow) => (
+                                <CardContainer key={tvShow.id}>
+                                    <TVShowCard tvShow={tvShow} />
+                                </CardContainer>
+                            ))}
+                        </React.Fragment>
+                    ))
+                }
             </SimpleGrid> 
         </>
     )

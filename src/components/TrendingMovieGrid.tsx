@@ -6,6 +6,7 @@ import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";
 import TrendingContentSelector from "./TrendingContentSelector";
 import { useState } from "react";
+import React from "react";
 
 
 
@@ -28,11 +29,17 @@ const MovieGrid = () => {
                         <CardSkeleton />
                     </CardContainer>
                 ))}
-                {movies?.results.slice(0, 12).map((movie) => (
-                    <CardContainer key={movie.id}>
-                        <MovieCard movie={movie} />
-                    </CardContainer>
-                ))}
+                {
+                    movies?.pages.map((page, index) => (
+                        <React.Fragment key={index}>
+                            {page.results.map((movie) => (
+                                <CardContainer key={movie.id}>
+                                    <MovieCard movie={movie} />
+                                </CardContainer>
+                            ))}
+                        </React.Fragment>
+                    ))
+                }
             </SimpleGrid> 
         </>
     )

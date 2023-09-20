@@ -1,47 +1,73 @@
-import { VStack, Text } from "@chakra-ui/react";
-import { Movie } from "../hooks/useTrendingMovies"
+import { Button, Text, VStack } from "@chakra-ui/react";
+import { InfiniteData } from "@tanstack/react-query";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FetchResponse } from "../hooks/useMediaContent";
+import { Movie } from "../hooks/useTrendingMovies";
 import InfoBoxContainer from "./InfoBoxContainer";
 import InfoBoxSkeleton from "./InfoBoxSkeleton";
 import MovieInfoBox from "./MovieInfoBox";
 
-
 interface Props {
-  movies: Movie[];
+  movies: InfiniteData<FetchResponse<Movie>>;
   isLoading: boolean;
   error: string | undefined;
+  isFetchingNextPage: boolean;
+  fetchNextPage: () => void;
+  hasNextPage: boolean | undefined;
 }
 
-
-const MovieInfoBoxGrid = ({ movies, isLoading, error }: Props) => {
+const MovieInfoBoxGrid = ({
+  movies,
+  isLoading,
+  error,
+  isFetchingNextPage,
+  fetchNextPage,
+  hasNextPage,
+}: Props) => {
   const skeletons = Array(12).fill(0);
 
+  if (error)
+    return (
+      <Text fontSize="2xl" textAlign="center">
+        {error}
+      </Text>
+    );
 
-  if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>;
-
+  const fetchedMoviesCount = movies.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
-    <VStack
-    spacing={4}
-    align='stretch'
+    <InfiniteScroll
+      dataLength={fetchedMoviesCount}
+      hasMore={!!hasNextPage}
+      next={() => fetchNextPage()}
+      loader={<></>}
     >
-      {
-        isLoading && skeletons.map((_, index) => (
-          <InfoBoxContainer key={index}>
-            <InfoBoxSkeleton />
-          </InfoBoxContainer>
-        ))
-      }
-      {
-        movies.map((movie, index) => (
-          <InfoBoxContainer key={index}>
-            <MovieInfoBox 
-            movie={movie}
-            />
-          </InfoBoxContainer>
-        ))
-      }
-    </VStack>
-  )
-}
+      <VStack spacing={4} align="stretch">
+        {isLoading &&
+          skeletons.map((_, index) => (
+            <InfoBoxContainer key={index}>
+              <InfoBoxSkeleton />
+            </InfoBoxContainer>
+          ))}
+        {movies.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((movie, index) => (
+              <InfoBoxContainer key={index}>
+                <MovieInfoBox movie={movie} />
+              </InfoBoxContainer>
+            ))}
+          </React.Fragment>
+        ))}
+        {hasNextPage && (
+          <Button>{isFetchingNextPage ? "Loading..." : "Load More"}</Button>
+        )}
+      </VStack>
+    </InfiniteScroll>
+  );
+};
 
-export default MovieInfoBoxGrid
+export default MovieInfoBoxGrid;

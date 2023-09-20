@@ -1,45 +1,73 @@
-import { Text, ListItem, UnorderedList, Skeleton } from "@chakra-ui/react";
+import {
+  ListItem,
+  Skeleton,
+  Spinner,
+  Text,
+  UnorderedList
+} from "@chakra-ui/react";
 
+import { InfiniteData } from "@tanstack/react-query";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FetchResponse } from "../hooks/useMediaContent";
 import { keyword } from "../hooks/useSearchKeywords";
 
-
 interface Props {
-  keywords: keyword[];
+  keywords: InfiniteData<FetchResponse<keyword>>;
   isLoading: boolean;
   error: string | undefined;
+  fetchNextPage: () => void;
+  hasNextPage: boolean | undefined;
 }
 
-
-const KeywordInfoList = ({ keywords, isLoading, error }: Props) => {
+const KeywordInfoList = ({
+  keywords,
+  isLoading,
+  error,
+  fetchNextPage,
+  hasNextPage,
+}: Props) => {
   const skeletons = Array(12).fill(0);
 
+  if (error)
+    return (
+      <Text fontSize="2xl" textAlign="center">
+        {error}
+      </Text>
+    );
 
-  if (error) return <Text fontSize='2xl' textAlign='center'>{error}</Text>;
-
+  const fetchedKeywordCount = keywords.pages.reduce(
+    (total, page) => total + page.results.length,
+    0
+  );
 
   return (
-    <>
+    <InfiniteScroll
+      dataLength={fetchedKeywordCount}
+      hasMore={!!hasNextPage}
+      next={() => fetchNextPage()}
+      loader={<Spinner />}
+    >
       <UnorderedList>
-        {
-          isLoading && skeletons.map((_, index) => (
+        {isLoading &&
+          skeletons.map((_, index) => (
             <Text boxShadow="md" padding={4} key={index}>
-              <Skeleton height='10px' />
+              <Skeleton height="10px" />
             </Text>
-          ))
-        }
+          ))}
       </UnorderedList>
-    
 
       <UnorderedList>
-        {
-          keywords.map((keyword) => (
-            <ListItem key={keyword.id}>
-              {keyword.name}
-            </ListItem>))
-        }
+        {keywords.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((keyword, index) => (
+              <ListItem key={index}>{keyword.name}</ListItem>
+            ))}
+          </React.Fragment>
+        ))}
       </UnorderedList>
-    </>
-  )
-}
+    </InfiniteScroll>
+  );
+};
 
-export default KeywordInfoList
+export default KeywordInfoList;

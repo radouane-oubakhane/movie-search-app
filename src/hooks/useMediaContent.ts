@@ -2,16 +2,17 @@ import apiClient from "../services/api-client";
 import { MovieQuery } from "../components/MovieContainer";
 import { TVShowQuery } from "../components/TVShowContainer";
 import { QuerySearch } from "../pages/SearchResultsPage";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 
 
 
 
-interface FetchResponse<T> {
+export interface FetchResponse<T> {
     page: number;
     results: T[];
     total_results: number;
+    total_pages: number;
 }
 
 
@@ -23,9 +24,9 @@ const useMediaContent = <T>(
     ) => {
         const selectedTimeWindowUrl = selectedTimeWindow ? '/' + selectedTimeWindow : '';
 
-        return useQuery<FetchResponse<T>, Error>({
+        return useInfiniteQuery<FetchResponse<T>, Error>({
             queryKey: [queryKey, query, selectedTimeWindow],
-            queryFn: () => 
+            queryFn: ({ pageParam }) => 
                 apiClient
                 .get<FetchResponse<T>>(endpoint + selectedTimeWindowUrl , { 
                     params: {
@@ -44,11 +45,16 @@ const useMediaContent = <T>(
                         'with_runtime.lte': query?.withRuntimeLte,
                         'with_runtime.gte': query?.withRuntimeGte,
                         'with_keywords': query?.withKeywords,  
-                        'query': query?.query,              
+                        query: query?.query,   
+                        page: pageParam,           
                     }
                 
                 })
                 .then((response) => response.data),
+            getNextPageParam: (lastPage, allPages) => 
+                        allPages.length >= lastPage.total_pages 
+                        ? undefined 
+                        : lastPage.page + 1,
 
 
         })

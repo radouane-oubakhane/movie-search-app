@@ -32,7 +32,7 @@ const MovieGrid = () => {
                 {
                     movies?.pages.map((page, index) => (
                         <React.Fragment key={index}>
-                            {page.results.map((movie) => (
+                            {page.results.slice(0,12).map((movie) => (
                                 <CardContainer key={movie.id}>
                                     <MovieCard movie={movie} />
                                 </CardContainer>

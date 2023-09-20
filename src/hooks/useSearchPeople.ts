@@ -6,13 +6,14 @@ import useMediaContent from "./useMediaContent";
 
 
 
-interface knownFor {
+export interface knownFor {
     name?: string;
     title?: string;
 }
 
 
 export interface Person {
+    id: number;
     name: string;
     known_for_department: string;
     profile_path: string;

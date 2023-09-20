@@ -4,30 +4,31 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import MediaSortingAndSelectionPage from "./pages/MediaSortingAndSelectionPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import PopularPeoplePage from "./pages/PopularPeoplePage";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Layout />,
-        errorElement: <ErrorPage />,
-        children: [
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
 
-            { index: true, element: <HomePage /> },
-            
-            {path: 'movie/popular', element: <MediaSortingAndSelectionPage />},
-            {path: 'movie/top-rated', element: <MediaSortingAndSelectionPage />},
-            {path: 'movie/upcoming', element: <MediaSortingAndSelectionPage />},
-            {path: 'movie/now-playing', element: <MediaSortingAndSelectionPage />},
+      { path: "movie/popular", element: <MediaSortingAndSelectionPage /> },
+      { path: "movie/top-rated", element: <MediaSortingAndSelectionPage /> },
+      { path: "movie/upcoming", element: <MediaSortingAndSelectionPage /> },
+      { path: "movie/now-playing", element: <MediaSortingAndSelectionPage /> },
 
-            {path: 'tv/popular', element: <MediaSortingAndSelectionPage />},
-            {path: 'tv/top-rated', element: <MediaSortingAndSelectionPage />},
-            {path: 'tv/on-the-air', element: <MediaSortingAndSelectionPage />},
-            {path: 'tv/airing-today', element: <MediaSortingAndSelectionPage />},
+      { path: "tv/popular", element: <MediaSortingAndSelectionPage /> },
+      { path: "tv/top-rated", element: <MediaSortingAndSelectionPage /> },
+      { path: "tv/on-the-air", element: <MediaSortingAndSelectionPage /> },
+      { path: "tv/airing-today", element: <MediaSortingAndSelectionPage /> },
 
-            
-            {path: 'search', element: <SearchResultsPage />},
-        ]
-    }
-])
+      { path: "person/popular", element: <PopularPeoplePage /> },
+
+      { path: "search", element: <SearchResultsPage /> },
+    ],
+  },
+]);
 
 export default router;

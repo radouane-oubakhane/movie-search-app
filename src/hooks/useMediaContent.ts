@@ -1,8 +1,9 @@
 import apiClient from "../services/api-client";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
 import { MovieQuery } from "../components/MovieContainer";
 import { TVShowQuery } from "../components/TVShowContainer";
 import { QuerySearch } from "../pages/SearchResultsPage";
-import { useInfiniteQuery } from "@tanstack/react-query";
 
 
 
@@ -55,6 +56,7 @@ const useMediaContent = <T>(
                         allPages.length >= lastPage.total_pages 
                         ? undefined 
                         : lastPage.page + 1,
+            staleTime: ms('24h'),
 
 
         })

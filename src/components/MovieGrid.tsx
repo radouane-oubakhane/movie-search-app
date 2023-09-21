@@ -42,7 +42,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
       loader={<></>}
     >
       <SimpleGrid
-        columns={{ sm: 2, md: 3, lg: 3, xl: 5 }}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         spacing={10}
         paddingX="10px"
       >

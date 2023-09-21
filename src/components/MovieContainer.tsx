@@ -64,11 +64,11 @@ const MovieContainer = ({ path }: Props) => {
   return (
     <Grid templateAreas={{
       base: `"heading" "aside" "content"`,
-      lg: `"heading heading" "aside content"`,
+      sm: `"heading heading" "aside content"`,
       }}
     templateColumns={{
         base: '1fr',
-        lg: '300px 1fr'
+        sm: '300px 1fr'
       }}
     >
       <GridItem area="heading" paddingX={2}>

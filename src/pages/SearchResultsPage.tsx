@@ -71,7 +71,6 @@ const SearchResultsPage = () => {
     data: keywords,
     isLoading: keywordsIsLoading,
     error: keywordsError,
-    isFetchingNextPage: keywordsIsFetchingNextPage,
     fetchNextPage: keywordsFetchNextPage,
     hasNextPage: keywordsHasNextPage,
   } = useSearchKeywords(querySearch);
@@ -79,7 +78,6 @@ const SearchResultsPage = () => {
     data: companies,
     isLoading: companiesIsLoading,
     error: companiesError,
-    isFetchingNextPage: companiesIsFetchingNextPage,
     fetchNextPage: companiesFetchNextPage,
     hasNextPage: companiesHasNextPage,
   } = useSearchCompanies(querySearch);
@@ -121,11 +119,11 @@ const SearchResultsPage = () => {
         padding={8}
         templateAreas={{
           base: `"aside" "content"`,
-          lg: `"aside content"`,
+          sm: `"aside content"`,
         }}
         templateColumns={{
           base: "1fr",
-          lg: "300px 1fr",
+          sm: "300px 1fr",
         }}
       >
         <GridItem area="aside" paddingX={2}>

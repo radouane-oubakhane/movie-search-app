@@ -37,7 +37,7 @@ const PersonGrid = () => {
       loader={<></>}
     >
       <SimpleGrid
-        columns={{ sm: 2, md: 3, lg: 3, xl: 5 }}
+        columns={{ sm: 2, md: 3, lg: 4, xl: 5 }}
         spacing={10}
         paddingX="10px"
       >

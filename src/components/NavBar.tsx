@@ -1,8 +1,9 @@
-import { HStack, Image, Center } from "@chakra-ui/react";
-import logo from "../assets/Logo.svg.png";
-import ColorModeSwitch from "./ColorModeSwitch";
-import CategorySelector from "./CategorySelector";
+import { Center, HStack, Hide, Image, Show } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import logo from "../assets/Logo.svg.png";
+import CategorySelector from "./CategorySelector";
+import ColorModeSwitch from "./ColorModeSwitch";
+import ToggleMenu from "./ToggleMenu";
 
 const NavBar = () => {
   const movieCategories = [
@@ -28,23 +29,32 @@ const NavBar = () => {
             <Image src={logo} alt="logo" />
           </Link>
         </Center>
-        <CategorySelector
-          title="Movies"
-          route="movie"
-          categories={movieCategories}
-        />
-        <CategorySelector
-          title="TV Shows"
-          route="tv"
-          categories={tvShowCategories}
-        />
-        <CategorySelector
-          title="People"
-          route="person"
-          categories={personCategories}
-        />
+        <Hide below="md">
+          <CategorySelector
+            title="Movies"
+            route="movie"
+            categories={movieCategories}
+          />
+          <CategorySelector
+            title="TV Shows"
+            route="tv"
+            categories={tvShowCategories}
+          />
+          <CategorySelector
+            title="People"
+            route="person"
+            categories={personCategories}
+          />
+        </Hide>
       </HStack>
-      <ColorModeSwitch />
+      <Hide below="md">
+        <ColorModeSwitch />
+      </Hide>
+      <Show below="md">
+        <ToggleMenu
+          categories={[movieCategories, tvShowCategories, personCategories]}
+        />
+      </Show>
     </HStack>
   );
 };

@@ -7,14 +7,13 @@ import {
   MenuList,
   useColorMode,
 } from "@chakra-ui/react";
+import useMenuCategories from "../hooks/useMenuCategories";
 import ToggleMenuOptionGroup from "./ToggleMenuOptionGroup";
 
-interface Props {
-  categories: { title: string; route: string }[][];
-}
-
-const ToggleMenu = ({ categories }: Props) => {
+const ToggleMenu = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { movieCategories, tvShowCategories, personCategories } =
+    useMenuCategories();
   return (
     <Menu>
       <MenuButton
@@ -27,17 +26,17 @@ const ToggleMenu = ({ categories }: Props) => {
         <ToggleMenuOptionGroup
           title="Movies"
           route="movie"
-          categories={categories[0]}
+          categories={movieCategories}
         />
         <ToggleMenuOptionGroup
           title="TV Shows"
           route="tv"
-          categories={categories[1]}
+          categories={tvShowCategories}
         />
         <ToggleMenuOptionGroup
           title="People"
           route="person"
-          categories={categories[2]}
+          categories={personCategories}
         />
         <MenuItem
           icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -51,5 +50,3 @@ const ToggleMenu = ({ categories }: Props) => {
 };
 
 export default ToggleMenu;
-
-

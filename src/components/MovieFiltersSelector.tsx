@@ -42,7 +42,8 @@ const MovieFiltersSelector = ({
   onKeywordChange,
 }: Props) => {
   return (
-    <Accordion defaultIndex={[0]} allowMultiple boxShadow="md" marginBottom={8}>
+    <Accordion defaultIndex={window.innerWidth < 479 ? [1] : [0]}
+    allowMultiple boxShadow="md" marginBottom={8}>
       <AccordionItem borderRadius="5px">
         <h1>
           <AccordionButton>

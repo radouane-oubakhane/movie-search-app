@@ -1,21 +1,13 @@
-
-import { MovieQuery } from "../components/MovieContainer";
-import { TVShowQuery } from "../components/TVShowContainer";
-import { QuerySearch } from "../pages/SearchResultsPage";
+import { MediaContentQuery } from "../store";
 import useMediaContent from "./useMediaContent";
 import { TVShow } from "./useTrendingTVShows";
 
-
-
-
-
-
-
-const useSearchTVShows = (querySearch: QuerySearch) => useMediaContent<TVShow>(
-        '/search/tv', 
-        null, 
-        "search-tv-shows", 
-        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
-    );
+const useSearchTVShows = (mediaContentQuery: MediaContentQuery) =>
+  useMediaContent<TVShow>(
+    "/search/tv",
+    null,
+    "search-tv-shows",
+    mediaContentQuery
+  );
 
 export default useSearchTVShows;

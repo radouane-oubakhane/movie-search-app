@@ -1,14 +1,14 @@
 import { Input } from "@chakra-ui/react"
 import { useRef } from "react"
-
-
-interface Props {
-    onKeywordChange: (keywords: string) => void;
-}
+import useMediaContentQueryStore from "../store";
 
 
 
-const KeywordInput = ({ onKeywordChange }: Props) => {
+
+
+
+const KeywordInput = () => {
+    const setKeywords = useMediaContentQueryStore(s => s.setWithKeywords);
     const keywordsRef = useRef<HTMLInputElement>(null);
 
     return (
@@ -16,7 +16,7 @@ const KeywordInput = ({ onKeywordChange }: Props) => {
         onSubmit={(event) => {
             event.preventDefault();
             if (keywordsRef.current?.value) 
-                onKeywordChange(keywordsRef.current.value);
+            setKeywords(keywordsRef.current.value);
             }
         }
         >

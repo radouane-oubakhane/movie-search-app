@@ -4,12 +4,12 @@ import MovieCard from "./MovieCard";
 import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";
 import useMovies from "../hooks/useMovies";
-import { MovieQuery } from "./MovieContainer";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { MediaContentQuery } from "../store";
 
 interface Props {
-  movieQuery: MovieQuery;
+  movieQuery: MediaContentQuery;
 }
 
 const MovieGrid = ({ movieQuery }: Props) => {

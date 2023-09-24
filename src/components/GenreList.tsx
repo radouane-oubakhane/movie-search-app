@@ -1,13 +1,18 @@
 import { Button, Text } from "@chakra-ui/react";
-import useTVShowGenres from "../hooks/useTVShowGenres";
 import useMediaContentQueryStore from "../store";
 
-const TVShowGenreList = () => {
+interface Props {
+  genres: {
+    id: number;
+    name: string;
+  }[];
+}
+
+const MovieGenreList = ({ genres }: Props) => {
   const withGenres = useMediaContentQueryStore(
     (s) => s.mediaContentQuery.withGenres
   );
   const setWithGenres = useMediaContentQueryStore((s) => s.setWithGenres);
-  const { data: genres } = useTVShowGenres();
   const selectedGenreIds = withGenres?.split(",") || [];
 
   const onGenreChange = (genreId: string) => {
@@ -40,4 +45,4 @@ const TVShowGenreList = () => {
   );
 };
 
-export default TVShowGenreList;
+export default MovieGenreList;

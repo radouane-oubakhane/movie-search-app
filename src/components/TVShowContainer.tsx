@@ -1,130 +1,84 @@
-import { useEffect, useState } from "react";
-import { Grid, GridItem } from "@chakra-ui/react"
+import { Grid, GridItem } from "@chakra-ui/react";
+import { useEffect } from "react";
+import useMediaContentQueryStore from "../store";
+import ContainerHeading from "./ContainerHeading";
 import TVShowGrid from "./TVShowGrid";
 import TVShowSortFilterSidebar from "./TVShowSortFilterSidebar";
-import ContainerHeading from "./ContainerHeading";
 
 interface Props {
-    path: string;
-  }
-
-export interface TVShowQuery {
-    sortBy: string;
-    fistAirDateGte: string;
-    firstAirDateLte: string;
-    screenedTheatrically: boolean;
-    withGenres?: string;
-    withOriginalLanguage?: string;
-    voteAverageGte?: number;
-    voteAverageLte?: number;
-    voteCountGte?: number;
-    withRuntimeGte?: number;
-    withRuntimeLte?: number;
-    withKeywords?: string;
-  }
-
-
-
-
+  path: string;
+}
 
 const TVShowContainer = ({ path }: Props) => {
-  const [tvShowQuery, setTVShowQuery] = useState<TVShowQuery>({} as TVShowQuery); 
-  
+  const mediaContentQuery = useMediaContentQueryStore(
+    (s) => s.mediaContentQuery
+  );
+  const setSortBy = useMediaContentQueryStore((s) => s.setSortBy);
+  const reset = useMediaContentQueryStore((s) => s.reset);
+  const setFirstAirDateGte = useMediaContentQueryStore(
+    (s) => s.setFirstAirDateGte
+  );
+  const setFirstAirDateLte = useMediaContentQueryStore(
+    (s) => s.setFirstAirDateLte
+  );
+
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    const nextWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const today = new Date().toISOString().split("T")[0];
+    const nextWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
 
-    if (path === 'popular') {
-      setTVShowQuery({sortBy: 'popularity.desc'} as TVShowQuery)
-    }
-    if (path === 'top-rated') {
-      setTVShowQuery({sortBy: 'vote_count.desc'} as TVShowQuery)
-    }    
-    if (path === 'on-the-air') {
-      setTVShowQuery({fistAirDateGte: today, firstAirDateLte: nextWeek, sortBy: 'popularity.desc'} as TVShowQuery)
-    }
-    if (path === 'airing-today') {
-      setTVShowQuery({fistAirDateGte: today, firstAirDateLte: today, sortBy: 'popularity.desc'} as TVShowQuery)
-    }
-    
-    }, [path])
-   
+    reset(); // reset all query params
 
+    if (path === "popular") {
+      setSortBy("popularity.desc");
+    }
+    if (path === "top-rated") {
+      setSortBy("vote_count.desc");
+    }
+    if (path === "on-the-air") {
+      setFirstAirDateGte(today);
+      setFirstAirDateLte(nextWeek);
+      setSortBy("popularity.desc");
+    }
+    if (path === "airing-today") {
+      setFirstAirDateGte(today);
+      setFirstAirDateLte(today);
+      setSortBy("popularity.desc");
+    }
+  }, [path]);
 
   const heading = [
-      {title: 'Popular', route: 'popular'}, 
-      {title: 'Top Rated', route: 'top-rated'}, 
-      {title: 'Currently Airing', route: 'on-the-air'}, 
-      {title: 'Airing Today', route: 'airing-today'}
-    ];
+    { title: "Popular", route: "popular" },
+    { title: "Top Rated", route: "top-rated" },
+    { title: "Currently Airing", route: "on-the-air" },
+    { title: "Airing Today", route: "airing-today" },
+  ];
 
-  const title = heading.find((item) => item.route === path)?.title || '';
-
+  const title = heading.find((item) => item.route === path)?.title || "";
 
   return (
-    <Grid templateAreas={{
-      base: `"heading" "aside" "content"`,
-      sm: `"heading heading" "aside content"`
+    <Grid
+      templateAreas={{
+        base: `"heading" "aside" "content"`,
+        sm: `"heading heading" "aside content"`,
       }}
-    templateColumns={{
-        base: '1fr',
-        sm: '300px 1fr'
+      templateColumns={{
+        base: "1fr",
+        sm: "300px 1fr",
       }}
     >
       <GridItem area="heading" paddingX={2}>
         <ContainerHeading category="TV Shows" title={title} />
       </GridItem>
       <GridItem area="aside" paddingX={2}>
-        <TVShowSortFilterSidebar 
-          onSortChange={
-          (sortingOption: string) => setTVShowQuery({...tvShowQuery, sortBy: sortingOption} as TVShowQuery)
-          }
-          onDateFromChange={
-            (date: string) => setTVShowQuery({...tvShowQuery, fistAirDateGte: date} as TVShowQuery)
-          }
-          onDateToChange={
-            (date: string) => setTVShowQuery({...tvShowQuery, firstAirDateLte: date} as TVShowQuery)
-          }
-          onGenreChange={
-            (genreId: string) => {
-              const genres = tvShowQuery.withGenres?.split(',');
-              if (!genres?.includes(genreId)) {
-                setTVShowQuery({...tvShowQuery, withGenres: `${tvShowQuery.withGenres ? tvShowQuery.withGenres + ',' : ''}${genreId}`} as TVShowQuery)
-              }
-              else {
-                const newGenres = genres.filter((genre) => genre !== genreId);
-                setTVShowQuery({...tvShowQuery, withGenres: newGenres.join(',')} as TVShowQuery)
-              }
-            }
-          }
-          selectedGenreIds={
-            tvShowQuery.withGenres?.split(',') || []
-          }
-          onLanguageChange={
-            (languageOption: string) => setTVShowQuery({...tvShowQuery, withOriginalLanguage: languageOption} as TVShowQuery)
-          }
-          onUserScoreChange={
-            (userScore: number[]) => setTVShowQuery({...tvShowQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1]} as TVShowQuery)
-          }
-          onMinimumUserVotesChange={
-            (minimumUserVotes: number) => setTVShowQuery({...tvShowQuery, voteCountGte: minimumUserVotes} as TVShowQuery)
-          }
-          onRuntimeChange={
-            (runtime: number[]) => setTVShowQuery({...tvShowQuery, withRuntimeGte: runtime[0], withRuntimeLte: runtime[1]} as TVShowQuery)
-          }
-          onKeywordChange={
-            (keywords: string) => setTVShowQuery({...tvShowQuery, withKeywords: keywords} as TVShowQuery)
-          }
-          />
+        <TVShowSortFilterSidebar />
       </GridItem>
       <GridItem area="content">
-        <TVShowGrid tvShowQuery={tvShowQuery} />
+        <TVShowGrid mediaContentQuery={mediaContentQuery} />
       </GridItem>
     </Grid>
-  )
-}
+  );
+};
 
-export default TVShowContainer
-
-
-
+export default TVShowContainer;

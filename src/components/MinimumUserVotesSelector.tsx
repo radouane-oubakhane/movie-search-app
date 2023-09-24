@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { Slider, SliderMark, SliderFilledTrack, SliderTrack, Tooltip, SliderThumb, Box } from '@chakra-ui/react';
+import useMediaContentQueryStore from '../store';
 
 
-interface Props {
-    onUserScoreChange: (minimumUserVotes: number) => void;
-}
 
 
-const MinimumUserVotesSelector = ({ onUserScoreChange }: Props) => {
+
+const MinimumUserVotesSelector = () => {
+
+    const setVoteCountGte = useMediaContentQueryStore(s => s.setVoteCountGte);
 
     const [sliderValue, setSliderValue] = useState(0)
     const [showTooltip, setShowTooltip] = useState(false)
 
     const handleSliderChange = (newValue: number) => {
-        onUserScoreChange(newValue);
+        setVoteCountGte(newValue);
         setSliderValue(newValue);  
     }
 

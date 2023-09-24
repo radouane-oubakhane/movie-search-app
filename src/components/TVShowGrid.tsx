@@ -3,16 +3,16 @@ import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
 import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";
 import TVShowCard from "./TVShowCard";
-import { TVShowQuery } from "./TVShowContainer";
 import useTVShows from "../hooks/useTVShows";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { MediaContentQuery } from "../store";
 
 interface Props {
-  tvShowQuery: TVShowQuery;
+  mediaContentQuery: MediaContentQuery;
 }
 
-const TVShowGrid = ({ tvShowQuery }: Props) => {
+const TVShowGrid = ({ mediaContentQuery }: Props) => {
   const {
     data: tvShows,
     isLoading,
@@ -20,7 +20,7 @@ const TVShowGrid = ({ tvShowQuery }: Props) => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useTVShows(tvShowQuery);
+  } = useTVShows(mediaContentQuery);
   const skeletons = Array(12).fill(0);
 
   if (error)

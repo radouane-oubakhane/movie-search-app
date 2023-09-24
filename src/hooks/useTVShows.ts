@@ -1,6 +1,4 @@
-import { MovieQuery } from "../components/MovieContainer";
-import { TVShowQuery } from "../components/TVShowContainer";
-import { QuerySearch } from "../pages/SearchResultsPage";
+import { MediaContentQuery } from "../store";
 import useMediaContent from "./useMediaContent";
 import { TVShow } from "./useTrendingTVShows";
 
@@ -12,11 +10,11 @@ import { TVShow } from "./useTrendingTVShows";
 
 
 
-const useTVShows = (tvShowQuery: TVShowQuery) => useMediaContent<TVShow>(
+const useTVShows = (mediaContentQuery: MediaContentQuery) => useMediaContent<TVShow>(
         '/discover/tv', 
         null, 
         "tv-shows", 
-        tvShowQuery as (MovieQuery & TVShowQuery & QuerySearch)
+        mediaContentQuery 
     );
 
 export default useTVShows;

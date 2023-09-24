@@ -1,12 +1,13 @@
 import { VStack, Box, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Accordion, Heading, Divider, Select, Text } from "@chakra-ui/react"
+import useMediaContentQueryStore from "../store";
 
 
 interface Props {
   sortingOptions: {label: string, value: string}[];
-  onSortChange: (sortingOption: string) => void;
 }
 
-const SortingSelector = ({ sortingOptions, onSortChange }: Props) => {
+const SortingSelector = ({ sortingOptions }: Props) => {
+  const setSortBy = useMediaContentQueryStore((s) => s.setSortBy);
   return (
     <Accordion defaultIndex={[1]} allowMultiple boxShadow='md'>
         <AccordionItem borderRadius="5px">
@@ -25,7 +26,7 @@ const SortingSelector = ({ sortingOptions, onSortChange }: Props) => {
           align='stretch'
           >
             <Text>Sort Results By</Text>
-            <Select onChange={(event) => onSortChange(event.target.value)}>
+            <Select onChange={(event) => setSortBy(event.target.value)}>
               {sortingOptions.map((option, index) => (
                 <option key={index} value={option.value}>{option.label}</option>))
               }

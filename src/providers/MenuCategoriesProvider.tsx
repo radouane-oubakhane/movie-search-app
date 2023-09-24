@@ -36,6 +36,3 @@ const MenuCategoriesProvider = ({ children }: Props) => {
 };
 
 export default MenuCategoriesProvider;
-
-
-

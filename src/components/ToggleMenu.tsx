@@ -5,6 +5,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
   useColorMode,
 } from "@chakra-ui/react";
 import useMenuCategories from "../hooks/useMenuCategories";
@@ -42,7 +43,10 @@ const ToggleMenu = () => {
           icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           onClick={toggleColorMode}
         >
+          <Text as='b'>
+
           {colorMode === "light" ? "Dark Mode" : "Light Mode"}
+          </Text>
         </MenuItem>
       </MenuList>
     </Menu>

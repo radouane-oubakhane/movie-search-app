@@ -12,35 +12,23 @@ import {
   Input,
   SimpleGrid,
 } from "@chakra-ui/react";
-import MovieGenreList from "./MovieGenreList";
+import GenreList from "./GenreList";
 import LanguageSelector from "./LanguageSelector";
 import MinimumUserVotesSelector from "./MinimumUserVotesSelector";
 import RangeSliderSelector from "./RangeSliderSelector";
 import KeywordInput from "./KeywordInput";
+import useMediaContentQueryStore from "../store";
+import useMovieGenres from "../hooks/useMovieGenres";
 
-interface Props {
-  onDateFromChange: (date: string) => void;
-  onDateToChange: (date: string) => void;
-  onGenreChange: (genreId: string) => void;
-  selectedGenreIds: string[];
-  onLanguageChange: (languageOption: string) => void;
-  onUserScoreChange: (userScore: number[]) => void;
-  onMinimumUserVotesChange: (minimumUserVotes: number) => void;
-  onRuntimeChange: (runtime: number[]) => void;
-  onKeywordChange: (keywords: string) => void;
-}
 
-const MovieFiltersSelector = ({
-  onDateFromChange,
-  onDateToChange,
-  onGenreChange,
-  selectedGenreIds,
-  onLanguageChange,
-  onUserScoreChange,
-  onMinimumUserVotesChange,
-  onRuntimeChange,
-  onKeywordChange,
-}: Props) => {
+
+const MovieFiltersSelector = () => {
+  const setPrimaryReleaseDateGte = useMediaContentQueryStore(s => s.setPrimaryReleaseDateGte);
+  const setPrimaryReleaseDateLte = useMediaContentQueryStore(s => s.setPrimaryReleaseDateLte);
+  const setUserScore = useMediaContentQueryStore(s => s.setUserScore);
+  const setRuntime = useMediaContentQueryStore(s => s.setRuntime);
+  const { data: genres } = useMovieGenres();
+  
   return (
     <Accordion defaultIndex={window.innerWidth < 479 ? [1] : [0]}
     allowMultiple boxShadow="md" marginBottom={8}>
@@ -65,14 +53,14 @@ const MovieFiltersSelector = ({
               >
                 <Text color="gray.400">from</Text>
                 <Input
-                  onChange={(event) => onDateFromChange(event.target.value)}
+                  onChange={(event) => setPrimaryReleaseDateGte(event.target.value)}
                   placeholder="Select Date and Time"
                   size="sm"
                   type="date"
                 />
                 <Text color="gray.400">to</Text>
                 <Input
-                  onChange={(event) => onDateToChange(event.target.value)}
+                  onChange={(event) => setPrimaryReleaseDateLte(event.target.value)}
                   placeholder="Select Date and Time"
                   size="sm"
                   type="date"
@@ -84,15 +72,12 @@ const MovieFiltersSelector = ({
         <Divider />
         <AccordionPanel pb={4}>
           <Text paddingBottom={3}>Genres</Text>
-          <MovieGenreList
-            onGenreChange={onGenreChange}
-            selectedGenreIds={selectedGenreIds}
-          />
+          <GenreList genres={genres}/>
         </AccordionPanel>
         <Divider />
         <AccordionPanel pb={4}>
           <Text paddingBottom={3}>Language</Text>
-          <LanguageSelector onLanguageChange={onLanguageChange} />
+          <LanguageSelector />
         </AccordionPanel>
         <Divider />
         <AccordionPanel pb={4}>
@@ -100,15 +85,13 @@ const MovieFiltersSelector = ({
           <RangeSliderSelector
             min={0}
             max={10}
-            onRangeChange={onUserScoreChange}
+            onRangeChange={setUserScore}
           />
         </AccordionPanel>
         <Divider />
         <AccordionPanel pb={4}>
           <Text paddingBottom={3}>Minimum User Votes</Text>
-          <MinimumUserVotesSelector
-            onUserScoreChange={onMinimumUserVotesChange}
-          />
+          <MinimumUserVotesSelector />
         </AccordionPanel>
         <Divider />
         <AccordionPanel pb={4}>
@@ -116,13 +99,13 @@ const MovieFiltersSelector = ({
           <RangeSliderSelector
             min={0}
             max={400}
-            onRangeChange={onRuntimeChange}
+            onRangeChange={setRuntime}
           />
         </AccordionPanel>
         <Divider />
         <AccordionPanel pb={4}>
           <Text paddingBottom={3}>Keywords</Text>
-          <KeywordInput onKeywordChange={onKeywordChange} />
+          <KeywordInput />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

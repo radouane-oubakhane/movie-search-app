@@ -25,7 +25,7 @@ const PersonInfoBox = ({ person }: Props) => {
             <Text as='b'>
                 {person.name}
             </Text>
-            <HStack>
+            <HStack flexWrap="wrap">
                 <Text> {person.known_for_department} </Text>
                 {person.known_for.length === 0 || <Text>•</Text>}
                 {

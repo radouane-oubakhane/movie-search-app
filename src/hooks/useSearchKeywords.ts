@@ -1,7 +1,5 @@
 
-import { MovieQuery } from "../components/MovieContainer";
-import { TVShowQuery } from "../components/TVShowContainer";
-import { QuerySearch } from "../pages/SearchResultsPage";
+import { MediaContentQuery } from "../store";
 import useMediaContent from "./useMediaContent";
 
 
@@ -17,11 +15,11 @@ export interface keyword {
 
 
 
-const useSearchPerson = (querySearch: QuerySearch) => useMediaContent<keyword>(
+const useSearchPerson = (mediaContentQuery: MediaContentQuery) => useMediaContent<keyword>(
         '/search/keyword', 
         null, 
         "search-keywords", 
-        querySearch as (MovieQuery & TVShowQuery & QuerySearch)
+        mediaContentQuery 
     );
 
 export default useSearchPerson;

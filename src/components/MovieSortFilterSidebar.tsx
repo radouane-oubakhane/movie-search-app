@@ -2,31 +2,9 @@ import { VStack } from "@chakra-ui/react";
 import SortingSelector from "./SortingSelector";
 import MovieFiltersSelector from "./MovieFiltersSelector";
 
-interface Props {
-  onSortChange: (sortingOption: string) => void;
-  onDateFromChange: (date: string) => void;
-  onDateToChange: (date: string) => void;
-  onGenreChange: (genreId: string) => void;
-  selectedGenreIds: string[];
-  onLanguageChange: (languageOption: string) => void;
-  onUserScoreChange: (userScore: number[]) => void;
-  onMinimumUserVotesChange: (minimumUserVotes: number) => void;
-  onRuntimeChange: (runtime: number[]) => void;
-  onKeywordChange: (keywords: string) => void;
-}
 
-const MovieSortFilterSidebar = ({
-  onSortChange,
-  onDateFromChange,
-  onDateToChange,
-  onGenreChange,
-  selectedGenreIds,
-  onLanguageChange,
-  onUserScoreChange,
-  onMinimumUserVotesChange,
-  onRuntimeChange,
-  onKeywordChange,
-}: Props) => {
+
+const MovieSortFilterSidebar = () => {
   const sortingOptions = [
     { label: "Popularity Descending", value: "popularity.desc" },
     { label: "Popularity Ascending", value: "popularity.asc" },
@@ -40,19 +18,8 @@ const MovieSortFilterSidebar = ({
     <VStack spacing={4} align="stretch">
       <SortingSelector
         sortingOptions={sortingOptions}
-        onSortChange={onSortChange}
       />
-      <MovieFiltersSelector
-        onDateFromChange={onDateFromChange}
-        onDateToChange={onDateToChange}
-        onGenreChange={onGenreChange}
-        selectedGenreIds={selectedGenreIds}
-        onLanguageChange={onLanguageChange}
-        onUserScoreChange={onUserScoreChange}
-        onMinimumUserVotesChange={onMinimumUserVotesChange}
-        onRuntimeChange={onRuntimeChange}
-        onKeywordChange={onKeywordChange}
-      />
+      <MovieFiltersSelector/>
     </VStack>
   );
 };

@@ -1,9 +1,7 @@
-import apiClient from "../services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { MovieQuery } from "../components/MovieContainer";
-import { TVShowQuery } from "../components/TVShowContainer";
-import { QuerySearch } from "../pages/SearchResultsPage";
+import apiClient from "../services/api-client";
+import { MediaContentQuery } from "../store";
 
 
 
@@ -21,7 +19,7 @@ const useMediaContent = <T>(
     endpoint: string, 
     selectedTimeWindow: 'day' | 'week' | null, 
     queryKey: string,
-    query?: MovieQuery & TVShowQuery & QuerySearch
+    query?: MediaContentQuery
     ) => {
         const selectedTimeWindowUrl = selectedTimeWindow ? '/' + selectedTimeWindow : '';
 

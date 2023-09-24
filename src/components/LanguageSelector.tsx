@@ -1,14 +1,14 @@
 import { Select } from "@chakra-ui/react"
 import useLanguages from "../hooks/useLanguages";
+import useMediaContentQueryStore from "../store";
 
 
 
-interface Props {
-    onLanguageChange: (languageOption: string) => void;
-}
 
 
-const LanguageSelector = ({ onLanguageChange }: Props) => {
+
+const LanguageSelector = () => {
+    const setLanguage = useMediaContentQueryStore(s => s.setWithOriginalLanguage);
     const { data: languages, error } = useLanguages();
 
     if (error) return null;
@@ -16,7 +16,7 @@ const LanguageSelector = ({ onLanguageChange }: Props) => {
     return (
         <Select
         placeholder="Select Language"
-         onChange={(event) => onLanguageChange(event.target.value)}>
+         onChange={(event) => setLanguage(event.target.value)}>
             {languages.map((language, index) => (
             <option key={index} value={language.iso_639_1}>{language.english_name}</option>))
             }

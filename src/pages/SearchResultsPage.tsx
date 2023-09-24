@@ -7,33 +7,36 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import SearchResultsSections from "../components/SearchResultsSections";
-import MovieInfoBoxGrid from "../components/MovieInfoBoxGrid";
-import { useSearchParams } from "react-router-dom";
-import useSearchMovies from "../hooks/useSearchMovies";
-import { useState } from "react";
-import useSearchTVShows from "../hooks/useSearchTVShows";
-import TVShowInfoBoxGrid from "../components/TVShowInfoBoxGrid";
-import useSearchPeople from "../hooks/useSearchPeople";
-import PersonInfoBoxGrid from "../components/PersonInfoBoxGrid";
+import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import useSearchCollections from "../hooks/useSearchCollections";
+import { useSearchParams } from "react-router-dom";
 import CollectionInfoBoxGrid from "../components/CollectionInfoBoxGrid";
-import KeywordInfoList from "../components/KeywordInfoList";
-import useSearchKeywords from "../hooks/useSearchKeywords";
-import useSearchCompanies from "../hooks/useSearchCompanies";
 import CompanyInfoList from "../components/CompanyInfoList";
-
-export interface QuerySearch {
-  query: string;
-}
+import KeywordInfoList from "../components/KeywordInfoList";
+import MovieInfoBoxGrid from "../components/MovieInfoBoxGrid";
+import PersonInfoBoxGrid from "../components/PersonInfoBoxGrid";
+import SearchResultsSections from "../components/SearchResultsSections";
+import TVShowInfoBoxGrid from "../components/TVShowInfoBoxGrid";
+import useSearchCollections from "../hooks/useSearchCollections";
+import useSearchCompanies from "../hooks/useSearchCompanies";
+import useSearchKeywords from "../hooks/useSearchKeywords";
+import useSearchMovies from "../hooks/useSearchMovies";
+import useSearchPeople from "../hooks/useSearchPeople";
+import useSearchTVShows from "../hooks/useSearchTVShows";
+import useMediaContentQueryStore from "../store";
 
 const SearchResultsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSection, setSelectedSection] = useState<string>("Movies");
-  const [querySearch, setQuerySearch] = useState<QuerySearch>({
-    query: searchParams.get("query") || "",
-  });
+  const mediaContentQuery = useMediaContentQueryStore(
+    (s) => s.mediaContentQuery
+  );
+  const setSearchText = useMediaContentQueryStore((s) => s.setSearchText);
+
+  useEffect(() => {
+    setSearchText(searchParams.get("query") || "");
+    return () => setSearchText("");
+  }, []);
 
   const {
     data: movies,
@@ -42,7 +45,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: moviesIsFetchingNextPage,
     fetchNextPage: moviesFetchNextPage,
     hasNextPage: moviesHasNextPage,
-  } = useSearchMovies(querySearch);
+  } = useSearchMovies(mediaContentQuery);
   const {
     data: tvShows,
     isLoading: tvShowsIsLoading,
@@ -50,7 +53,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: tvShowsIsFetchingNextPage,
     fetchNextPage: tvShowsFetchNextPage,
     hasNextPage: tvShowsHasNextPage,
-  } = useSearchTVShows(querySearch);
+  } = useSearchTVShows(mediaContentQuery);
   const {
     data: people,
     isLoading: peopleIsLoading,
@@ -58,7 +61,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: peopleIsFetchingNextPage,
     fetchNextPage: peopleFetchNextPage,
     hasNextPage: peopleHasNextPage,
-  } = useSearchPeople(querySearch);
+  } = useSearchPeople(mediaContentQuery);
   const {
     data: collections,
     isLoading: collectionsIsLoading,
@@ -66,21 +69,21 @@ const SearchResultsPage = () => {
     isFetchingNextPage: collectionsIsFetchingNextPage,
     fetchNextPage: collectionsFetchNextPage,
     hasNextPage: collectionsHasNextPage,
-  } = useSearchCollections(querySearch);
+  } = useSearchCollections(mediaContentQuery);
   const {
     data: keywords,
     isLoading: keywordsIsLoading,
     error: keywordsError,
     fetchNextPage: keywordsFetchNextPage,
     hasNextPage: keywordsHasNextPage,
-  } = useSearchKeywords(querySearch);
+  } = useSearchKeywords(mediaContentQuery);
   const {
     data: companies,
     isLoading: companiesIsLoading,
     error: companiesError,
     fetchNextPage: companiesFetchNextPage,
     hasNextPage: companiesHasNextPage,
-  } = useSearchCompanies(querySearch);
+  } = useSearchCompanies(mediaContentQuery);
 
   const searchResultsSections = [
     { label: "Movies", count: movies?.pages[0].total_results || 0 },
@@ -107,7 +110,7 @@ const SearchResultsPage = () => {
             value={searchParams.get("query") || ""}
             onChange={(event) => {
               setSearchParams({ query: event.currentTarget.value });
-              setQuerySearch({ query: event.currentTarget.value });
+              setSearchText(event.currentTarget.value);
             }}
             variant=""
           />

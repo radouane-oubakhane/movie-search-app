@@ -1,4 +1,3 @@
-import { MediaContentQuery } from "../store";
 import useMediaContent from "./useMediaContent";
 
 export interface Collection {
@@ -8,12 +7,7 @@ export interface Collection {
   poster_path: string;
 }
 
-const useSearchCollections = (mediaContentQuery: MediaContentQuery) =>
-  useMediaContent<Collection>(
-    "/search/collection",
-    null,
-    "search-collections",
-    mediaContentQuery
-  );
+const useSearchCollections = () =>
+  useMediaContent<Collection>("/search/collection", null, "search-collections");
 
 export default useSearchCollections;

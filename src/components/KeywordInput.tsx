@@ -8,7 +8,7 @@ import useMediaContentQueryStore from "../store";
 
 
 const KeywordInput = () => {
-    const setKeywords = useMediaContentQueryStore(s => s.setWithKeywords);
+    const setKeywords = useMediaContentQueryStore(s => s.setKeywords);
     const keywordsRef = useRef<HTMLInputElement>(null);
 
     return (

@@ -8,7 +8,7 @@ import useMediaContentQueryStore from "../store";
 
 
 const LanguageSelector = () => {
-    const setLanguage = useMediaContentQueryStore(s => s.setWithOriginalLanguage);
+    const setOriginalLanguage = useMediaContentQueryStore(s => s.setOriginalLanguage);
     const { data: languages, error } = useLanguages();
 
     if (error) return null;
@@ -16,7 +16,7 @@ const LanguageSelector = () => {
     return (
         <Select
         placeholder="Select Language"
-         onChange={(event) => setLanguage(event.target.value)}>
+         onChange={(event) => setOriginalLanguage(event.target.value)}>
             {languages.map((language, index) => (
             <option key={index} value={language.iso_639_1}>{language.english_name}</option>))
             }

@@ -7,13 +7,12 @@ import {
   Box,
   Divider,
   Heading,
-  Input,
-  SimpleGrid,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import useTVShowGenres from "../hooks/useTVShowGenres";
 import useMediaContentQueryStore from "../store";
+import DateRangeFilter from "./DateRangeFilter";
 import GenreList from "./GenreList";
 import KeywordInput from "./KeywordInput";
 import LanguageSelector from "./LanguageSelector";
@@ -45,29 +44,11 @@ const TVShowFiltersSelector = () => {
         <Divider />
         <AccordionPanel pb={4}>
           <VStack spacing={4} align="stretch">
-            <Text>Release Dates</Text>
-            <VStack>
-              <SimpleGrid
-                columns={2}
-                justifyContent="space-between"
-                spacingY={3}
-              >
-                <Text color="gray.400">from</Text>
-                <Input
-                  onChange={(event) => setFirstAirDateGte(event.target.value)}
-                  placeholder="Select Date and Time"
-                  size="sm"
-                  type="date"
-                />
-                <Text color="gray.400">to</Text>
-                <Input
-                  onChange={(event) => setFirstAirDateLte(event.target.value)}
-                  placeholder="Select Date and Time"
-                  size="sm"
-                  type="date"
-                />
-              </SimpleGrid>
-            </VStack>
+            <Text>Air Dates</Text>
+            <DateRangeFilter
+              setStartDate={setFirstAirDateGte} 
+              setEndDate={setFirstAirDateLte}
+            />
           </VStack>
         </AccordionPanel>
         <Divider />

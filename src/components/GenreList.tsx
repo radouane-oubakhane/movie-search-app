@@ -12,16 +12,16 @@ const MovieGenreList = ({ genres }: Props) => {
   const withGenres = useMediaContentQueryStore(
     (s) => s.mediaContentQuery.withGenres
   );
-  const setWithGenres = useMediaContentQueryStore((s) => s.setWithGenres);
+  const setGenres = useMediaContentQueryStore((s) => s.setGenres);
   const selectedGenreIds = withGenres?.split(",") || [];
 
   const onGenreChange = (genreId: string) => {
     const genres = withGenres?.split(",");
     if (!genres?.includes(genreId)) {
-      setWithGenres(`${withGenres ? withGenres + "," : ""}${genreId}`);
+      setGenres(`${withGenres ? withGenres + "," : ""}${genreId}`);
     } else {
       const newGenres = genres.filter((genre) => genre !== genreId);
-      setWithGenres(newGenres.join(","));
+      setGenres(newGenres.join(","));
     }
   };
 

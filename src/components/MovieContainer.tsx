@@ -10,11 +10,8 @@ interface Props {
 }
 
 const MovieContainer = ({ path }: Props) => {
-  const mediaContentQuery = useMediaContentQueryStore(
-    s => s.mediaContentQuery
-  );
-  const setSortBy = useMediaContentQueryStore(s => s.setSortBy);
-  const reset = useMediaContentQueryStore(s => s.reset);
+  const setSortBy = useMediaContentQueryStore((s) => s.setSortBy);
+  const reset = useMediaContentQueryStore((s) => s.reset);
 
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
@@ -62,7 +59,7 @@ const MovieContainer = ({ path }: Props) => {
         <MovieSortFilterSidebar />
       </GridItem>
       <GridItem area="content">
-        <MovieGrid movieQuery={mediaContentQuery} />
+        <MovieGrid />
       </GridItem>
     </Grid>
   );

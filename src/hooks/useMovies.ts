@@ -1,15 +1,14 @@
 
-import { MediaContentQuery } from "../store";
 import useMediaContent from "./useMediaContent";
 import { Movie } from "./useTrendingMovies";
 
 
 
 
-const useMovies = (movieQuery: MediaContentQuery) => useMediaContent<Movie>(
+const useMovies = () => useMediaContent<Movie>(
         '/discover/movie', 
         null, 
-        "movies", movieQuery as (MediaContentQuery)
+        "movies"
     );
 
 export default useMovies;

@@ -1,18 +1,15 @@
-import { Button, SimpleGrid, Text, Box } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
 
-import MovieCard from "./MovieCard";
-import CardSkeleton from "./CardSkeleton";
-import CardContainer from "./CardContainer";
-import useMovies from "../hooks/useMovies";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { MediaContentQuery } from "../store";
+import useMovies from "../hooks/useMovies";
+import CardContainer from "./CardContainer";
+import CardSkeleton from "./CardSkeleton";
+import MovieCard from "./MovieCard";
 
-interface Props {
-  movieQuery: MediaContentQuery;
-}
 
-const MovieGrid = ({ movieQuery }: Props) => {
+
+const MovieGrid = () => {
   const {
     data: movies,
     isLoading,
@@ -20,7 +17,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useMovies(movieQuery);
+  } = useMovies();
 
   const skeletons = Array(12).fill(0);
 

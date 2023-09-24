@@ -28,9 +28,7 @@ import useMediaContentQueryStore from "../store";
 const SearchResultsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSection, setSelectedSection] = useState<string>("Movies");
-  const mediaContentQuery = useMediaContentQueryStore(
-    (s) => s.mediaContentQuery
-  );
+
   const setSearchText = useMediaContentQueryStore((s) => s.setSearchText);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: moviesIsFetchingNextPage,
     fetchNextPage: moviesFetchNextPage,
     hasNextPage: moviesHasNextPage,
-  } = useSearchMovies(mediaContentQuery);
+  } = useSearchMovies();
   const {
     data: tvShows,
     isLoading: tvShowsIsLoading,
@@ -53,7 +51,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: tvShowsIsFetchingNextPage,
     fetchNextPage: tvShowsFetchNextPage,
     hasNextPage: tvShowsHasNextPage,
-  } = useSearchTVShows(mediaContentQuery);
+  } = useSearchTVShows();
   const {
     data: people,
     isLoading: peopleIsLoading,
@@ -61,7 +59,7 @@ const SearchResultsPage = () => {
     isFetchingNextPage: peopleIsFetchingNextPage,
     fetchNextPage: peopleFetchNextPage,
     hasNextPage: peopleHasNextPage,
-  } = useSearchPeople(mediaContentQuery);
+  } = useSearchPeople();
   const {
     data: collections,
     isLoading: collectionsIsLoading,
@@ -69,21 +67,21 @@ const SearchResultsPage = () => {
     isFetchingNextPage: collectionsIsFetchingNextPage,
     fetchNextPage: collectionsFetchNextPage,
     hasNextPage: collectionsHasNextPage,
-  } = useSearchCollections(mediaContentQuery);
+  } = useSearchCollections();
   const {
     data: keywords,
     isLoading: keywordsIsLoading,
     error: keywordsError,
     fetchNextPage: keywordsFetchNextPage,
     hasNextPage: keywordsHasNextPage,
-  } = useSearchKeywords(mediaContentQuery);
+  } = useSearchKeywords();
   const {
     data: companies,
     isLoading: companiesIsLoading,
     error: companiesError,
     fetchNextPage: companiesFetchNextPage,
     hasNextPage: companiesHasNextPage,
-  } = useSearchCompanies(mediaContentQuery);
+  } = useSearchCompanies();
 
   const searchResultsSections = [
     { label: "Movies", count: movies?.pages[0].total_results || 0 },

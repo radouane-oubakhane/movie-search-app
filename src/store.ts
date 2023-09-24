@@ -16,7 +16,7 @@ export interface MediaContentQuery {
   fistAirDateGte?: string;
   firstAirDateLte?: string;
   screenedTheatrically?: boolean;
-  query?: string;
+  searchText?: string;
 }
 
 interface MediaContentQueryStore {
@@ -27,121 +27,123 @@ interface MediaContentQueryStore {
   setPrimaryReleaseDateGte: (primaryReleaseDateGte: string) => void;
   setPrimaryReleaseDateLte: (primaryReleaseDateLte: string) => void;
   setReleaseDateLte: (releaseDateLte: string) => void;
-  setWithGenres: (withGenres: string) => void;
-  setWithOriginalLanguage: (withOriginalLanguage: string) => void;
+  setGenres: (withGenres: string) => void;
+  setOriginalLanguage: (withOriginalLanguage: string) => void;
   setVoteAverageGte: (voteAverageGte: number) => void;
   setVoteAverageLte: (voteAverageLte: number) => void;
   setVoteCountGte: (voteCountGte: number) => void;
-  setWithRuntimeGte: (withRuntimeGte: number) => void;
-  setWithRuntimeLte: (withRuntimeLte: number) => void;
-  setWithKeywords: (withKeywords: string) => void;
+  setRuntimeGte: (withRuntimeGte: number) => void;
+  setRuntimeLte: (withRuntimeLte: number) => void;
+  setKeywords: (withKeywords: string) => void;
   setFirstAirDateGte: (firstAirDateGte: string) => void;
   setFirstAirDateLte: (firstAirDateLte: string) => void;
   setScreenedTheatrically: (screenedTheatrically: boolean) => void;
-  setWithAverageGte: (withAverageGte: number) => void;
-  setWithAverageLte: (withAverageLte: number) => void;
-  setWithNetworks: (withNetworks: string) => void;
+  setAverageGte: (withAverageGte: number) => void;
+  setAverageLte: (withAverageLte: number) => void;
+  setNetworks: (withNetworks: string) => void;
   setUserScore: (userScore: number[]) => void;
   setRuntime: (runtime: number[]) => void;
   reset: () => void;
 }
 
 const useMediaContentQueryStore = create<MediaContentQueryStore>((set) => ({
-
   mediaContentQuery: {},
 
-  setSearchText: (text: string) =>
-    set(() => ({ mediaContentQuery: { query: text } })),
+  setSearchText: (searchText: string) =>
+    set(() => ({ mediaContentQuery: { searchText } })),
 
   setSortBy: (sortBy: string) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, sortBy },
     })),
   setPrimaryReleaseDateGte: (primaryReleaseDateGte: string) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, primaryReleaseDateGte },
     })),
   setPrimaryReleaseDateLte: (primaryReleaseDateLte: string) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, primaryReleaseDateLte },
     })),
   setReleaseDateLte: (releaseDateLte: string) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, releaseDateLte },
     })),
-  setWithGenres: (withGenres: string) =>
-    set((state) => ({
+  setGenres: (withGenres: string) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withGenres },
     })),
-  setWithOriginalLanguage: (withOriginalLanguage: string) =>
-    set((state) => ({
+  setOriginalLanguage: (withOriginalLanguage: string) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withOriginalLanguage },
     })),
   setVoteAverageGte: (voteAverageGte: number) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, voteAverageGte },
     })),
   setVoteAverageLte: (voteAverageLte: number) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, voteAverageLte },
     })),
   setVoteCountGte: (voteCountGte: number) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, voteCountGte },
     })),
-  setWithRuntimeGte: (withRuntimeGte: number) =>
-    set((state) => ({
+  setRuntimeGte: (withRuntimeGte: number) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withRuntimeGte },
     })),
-  setWithRuntimeLte: (withRuntimeLte: number) =>
-    set((state) => ({
+  setRuntimeLte: (withRuntimeLte: number) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withRuntimeLte },
     })),
-  setWithKeywords: (withKeywords: string) =>
-    set((state) => ({
+  setKeywords: (withKeywords: string) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withKeywords },
     })),
-  setFirstAirDateGte: (firstAirDateGte: string) =>
-    set((state) => ({
+  setFirstAirDateGte: (firstAirDateGte: string) => 
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, firstAirDateGte },
     })),
   setFirstAirDateLte: (firstAirDateLte: string) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, firstAirDateLte },
     })),
   setScreenedTheatrically: (screenedTheatrically: boolean) =>
-    set((state) => ({
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, screenedTheatrically },
     })),
-  setWithAverageGte: (withAverageGte: number) =>
-    set((state) => ({
+  setAverageGte: (withAverageGte: number) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withAverageGte },
     })),
-  setWithAverageLte: (withAverageLte: number) =>
-    set((state) => ({
+  setAverageLte: (withAverageLte: number) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withAverageLte },
     })),
-  setWithNetworks: (withNetworks: string) =>
-    set((state) => ({
+  setNetworks: (withNetworks: string) =>
+    set(state => ({
       mediaContentQuery: { ...state.mediaContentQuery, withNetworks },
     })),
 
   setUserScore: (userScore: number[]) =>
-    set((state) => ({
-      mediaContentQuery: { ...state.mediaContentQuery, voteAverageGte: userScore[0], voteAverageLte: userScore[1] },
+    set(state => ({
+      mediaContentQuery: {
+        ...state.mediaContentQuery,
+        voteAverageGte: userScore[0],
+        voteAverageLte: userScore[1],
+      },
     })),
 
   setRuntime: (runtime: number[]) =>
-    set((state) => ({
-      mediaContentQuery: { ...state.mediaContentQuery, withRuntimeGte: (runtime[0] * 1000 * 60), withRuntimeLte: (runtime[1] * 1000 * 60) },
+    set(state => ({
+      mediaContentQuery: {
+        ...state.mediaContentQuery,
+        withRuntimeGte: runtime[0] * 1000 * 60,
+        withRuntimeLte: runtime[1] * 1000 * 60,
+      },
     })),
 
-    
   reset: () => set(() => ({ mediaContentQuery: {} })),
 }));
 
-
 export default useMediaContentQueryStore;
-
-
-

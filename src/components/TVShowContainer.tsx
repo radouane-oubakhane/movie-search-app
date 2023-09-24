@@ -10,9 +10,6 @@ interface Props {
 }
 
 const TVShowContainer = ({ path }: Props) => {
-  const mediaContentQuery = useMediaContentQueryStore(
-    (s) => s.mediaContentQuery
-  );
   const setSortBy = useMediaContentQueryStore((s) => s.setSortBy);
   const reset = useMediaContentQueryStore((s) => s.reset);
   const setFirstAirDateGte = useMediaContentQueryStore(
@@ -75,7 +72,7 @@ const TVShowContainer = ({ path }: Props) => {
         <TVShowSortFilterSidebar />
       </GridItem>
       <GridItem area="content">
-        <TVShowGrid mediaContentQuery={mediaContentQuery} />
+        <TVShowGrid />
       </GridItem>
     </Grid>
   );

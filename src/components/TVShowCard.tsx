@@ -5,40 +5,45 @@ import { TVShow } from "../hooks/useTrendingTVShows";
 import formatDate from "../services/format-date";
 import { Link } from "react-router-dom";
 
-
 interface Props {
-    tvShow: TVShow;
+  tvShow: TVShow;
 }
-
-
 
 const TVShowCard = ({ tvShow }: Props) => {
   return (
-    <VStack 
-    spacing={4}
-    align='stretch'>
-      <Image boxShadow='md' borderRadius={10} overflow='hidden'
-      src={getImageUrl(tvShow.poster_path, 'w300')} 
-      alt={`${tvShow.name} poster`} 
-    />
+    <VStack spacing={4} align="stretch">
+      <Link to={"/tv/" + tvShow.id}>
+        <Image
+          _hover={{
+            transform: "scale(1.03)",
+            transition: "transform 0.15s ease-in-out",
+          }}
+          boxShadow="md"
+          borderRadius={10}
+          overflow="hidden"
+          src={getImageUrl(tvShow.poster_path, "w300")}
+          alt={`${tvShow.name} poster`}
+        />
+      </Link>
       <Box>
-          <HStack justifyContent='space-between'>
-          <VStack align='stretch'>
-              <Heading fontSize="1xl" textAlign='start' _hover={{ color: 'blue.400' }}>
-              <Link to={'/tv/' + tvShow.id} >
-              {tvShow.name}
-                  </Link>
-                
-              </Heading>
-              <Text as='abbr' textAlign='start'>
-                {formatDate(tvShow.first_air_date)}
-              </Text>
-            </VStack>
-              <AverageVoteCircle averageVote={tvShow.vote_average} />
-          </HStack>
+        <HStack justifyContent="space-between">
+          <VStack align="stretch">
+            <Heading
+              fontSize="1xl"
+              textAlign="start"
+              _hover={{ color: "blue.400" }}
+            >
+              <Link to={"/tv/" + tvShow.id}>{tvShow.name}</Link>
+            </Heading>
+            <Text as="abbr" textAlign="start">
+              {formatDate(tvShow.first_air_date)}
+            </Text>
+          </VStack>
+          <AverageVoteCircle averageVote={tvShow.vote_average} />
+        </HStack>
       </Box>
     </VStack>
-  )
-}
+  );
+};
 
-export default TVShowCard
+export default TVShowCard;

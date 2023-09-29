@@ -1,16 +1,17 @@
-import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import useCredits from "../hooks/useCredits";
-import PersonCardSkeleton from "./PersonCardSkeleton";
+import { Heading, Text } from "@chakra-ui/react";
+import useTVShowCredits from "../hooks/useTVShowCredits copy";
 import CardContainer from "./CardContainer";
 import CastCard from "./CastCard";
+import CastGridContainer from "./CastGridContainer";
+import PersonCardSkeleton from "./PersonCardSkeleton";
 
 interface Props {
   id: string;
   title: string;
 }
 
-const CastGrid = ({ id, title }: Props) => {
-  const { data: credits, isLoading, error } = useCredits(id);
+const TVShowCastGrid = ({ id, title }: Props) => {
+  const { data: credits, isLoading, error } = useTVShowCredits(id);
 
   const cast = credits?.cast?.sort((a, b) => a.order - b.order).slice(0, 10);
 
@@ -30,7 +31,7 @@ const CastGrid = ({ id, title }: Props) => {
       <Heading fontSize="2xl" paddingY={6}>
         {title}
       </Heading>
-      <SimpleGrid columns={{ sm: 2, md: 3, lg: 4, xl: 5 }} spacing={10}>
+      <CastGridContainer>
         {isLoading &&
           skeletons.map((_, index) => (
             <CardContainer key={index}>
@@ -42,9 +43,9 @@ const CastGrid = ({ id, title }: Props) => {
             <CastCard cast={cast} />
           </CardContainer>
         ))}
-      </SimpleGrid>
+      </CastGridContainer>
     </>
   );
 };
 
-export default CastGrid;
+export default TVShowCastGrid;

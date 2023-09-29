@@ -1,5 +1,5 @@
 import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
-import { Cast } from "../hooks/useCredits";
+import { Cast } from "../hooks/useMovieCredits";
 import getImageUrl from "../services/image-url";
 
 interface Props {

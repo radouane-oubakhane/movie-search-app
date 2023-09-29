@@ -13,17 +13,17 @@ import { useParams } from "react-router-dom";
 
 import AdultBadge from "../components/AdultBadge";
 import AverageVoteCircle from "../components/AverageVoteCircle";
-import MovieCastGrid from "../components/MovieCastGrid";
 import DetailPageSkeleton from "../components/DetailPageSkeleton";
-import useMovie from "../hooks/useMovie";
+import TVShowCastGrid from "../components/TVShowCastGrid";
+import useTVShow from "../hooks/useTVShow";
 import formatDate from "../services/format-date";
 import getYearFromDate from "../services/get-year-from-date";
 import getImageUrl from "../services/image-url";
 import minutesToHours from "../services/minutes-to-hours";
 
-const MovieDetailPage = () => {
+const TVShowDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // id: string
-  const { data: movie, error, isLoading } = useMovie(id!);
+  const { data: tvShow, error, isLoading } = useTVShow(id!);
 
   if (isLoading) return <DetailPageSkeleton />;
 
@@ -34,7 +34,7 @@ const MovieDetailPage = () => {
       </Text>
     );
 
-  if (!movie) return null;
+  if (!tvShow) return null;
 
   return (
     <Grid
@@ -56,36 +56,36 @@ const MovieDetailPage = () => {
             borderRadius={20}
             overflow="hidden"
             blur="0px"
-            src={getImageUrl(movie.poster_path, "w300")}
-            alt={`${movie.title} poster`}
+            src={getImageUrl(tvShow.poster_path, "w300")}
+            alt={`${tvShow.name} poster`}
           />
         </Center>
       </GridItem>
       <GridItem area="details" padding={8}>
         <VStack spacing={4} align="stretch">
           <Heading fontSize="2xl" fontWeight="bold">
-            {movie.title}
+            {tvShow.name}
             <Text as="abbr" color="gray.400" p={2}>
-              {getYearFromDate(movie.release_date)}
+              {getYearFromDate(tvShow.first_air_date)}
             </Text>
           </Heading>
           <HStack flexWrap="wrap">
-            <AdultBadge isAdult={movie.adult} />
-            <Text p={1}>{formatDate(movie.release_date)}</Text>
-            <Text>({movie.original_language.toUpperCase()})</Text>
+            <AdultBadge isAdult={tvShow.adult} />
+            <Text p={1}>{formatDate(tvShow.first_air_date)}</Text>
+            <Text>({tvShow.original_language.toUpperCase()})</Text>
             <Text>|</Text>
             <Text p={1}>
-              {movie.genres.map((genre) => genre.name).join(", ")}
+              {tvShow.genres.map((genre) => genre.name).join(", ")}
             </Text>
             <Text>|</Text>
-            <Text p={1}>{minutesToHours(movie.runtime)}</Text>
-            <AverageVoteCircle averageVote={movie.vote_average} />
+            <Text p={1}>{minutesToHours(tvShow.runtime)}</Text>
+            <AverageVoteCircle averageVote={tvShow.vote_average} />
           </HStack>
           <VStack paddingY={8}>
             <Heading fontSize="md" fontWeight="bold" as="h1">
               Overview
             </Heading>
-            <Text p={2}>{movie.overview}</Text>
+            <Text p={2}>{tvShow.overview}</Text>
           </VStack>
         </VStack>
       </GridItem>
@@ -93,10 +93,10 @@ const MovieDetailPage = () => {
         <Divider />
       </GridItem>
       <GridItem area="cast" paddingX={8}>
-        <MovieCastGrid id={id!} title="Top Billed Cast" />
+        <TVShowCastGrid id={id!} title="Top Billed Cast" />
       </GridItem>
     </Grid>
   );
 };
 
-export default MovieDetailPage;
+export default TVShowDetailPage;

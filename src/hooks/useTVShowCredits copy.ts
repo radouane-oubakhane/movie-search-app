@@ -32,19 +32,19 @@ export interface Crew {
   job: string;
 }
 
-interface Credits {
+export interface Credits {
   id: number;
   cast: Cast[];
   crew: Crew[];
 }
 
-const useCredits = (id: number | string) =>
+const useTVShowCredits = (id: number | string) =>
   useQuery<Credits, Error>({
-    queryKey: ["movie", id, "credits"],
+    queryKey: ["tv", id, "credits"],
     queryFn: () =>
       apiClient
-        .get<Credits>("/movie/" + id + "/credits")
+        .get<Credits>("/tv/" + id + "/credits")
         .then((response) => response.data),
   });
 
-export default useCredits;
+export default useTVShowCredits;

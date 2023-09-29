@@ -6,6 +6,7 @@ import MediaSortingAndSelectionPage from "./pages/MediaSortingAndSelectionPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import PopularPeoplePage from "./pages/PopularPeoplePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import TVShowDetailPage from "./pages/TVShowDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
             path: "airing-today",
             element: <MediaSortingAndSelectionPage />,
           },
+          { path: ":id", element: <TVShowDetailPage /> },
         ],
       },
 

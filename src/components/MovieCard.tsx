@@ -13,18 +13,18 @@ const MovieCard = ({ movie }: Props) => {
   return (
     <VStack spacing={4} align="stretch">
       <Link to={"/movie/" + movie.id}>
-      <Image
-        _hover={{
-          transform: "scale(1.03)",
-          transition: "transform 0.15s ease-in-out",
-        }}
-        boxShadow="md"
-        borderRadius={10}
-        overflow="hidden"
-        objectFit="cover"
-        src={getImageUrl(movie.poster_path, "w300")}
-        alt={`${movie.title} poster`}
-      />
+        <Image
+          _hover={{
+            transform: "scale(1.03)",
+            transition: "transform 0.15s ease-in-out",
+          }}
+          boxShadow="md"
+          borderRadius={10}
+          overflow="hidden"
+          objectFit="cover"
+          src={getImageUrl(movie.poster_path, "w300")}
+          alt={`${movie.title} poster`}
+        />
       </Link>
       <Box>
         <HStack justifyContent="space-between">

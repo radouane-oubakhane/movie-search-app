@@ -19,7 +19,7 @@ const MovieGrid = () => {
     
     return (
         <>
-            <HStack justifyContent='space-between' padding='10px'>
+            <HStack justifyContent='space-between' padding='10px' flexWrap="wrap">
                 <Heading as='h1' size='2xl'>Trending movies</Heading>
                 <TrendingContentSelector onSelectTimeWindow={(timeWindow: 'day' | 'week') => setSelectedTimeWindow(timeWindow)} selectedTimeWindow={selectedTimeWindow} />
             </HStack>

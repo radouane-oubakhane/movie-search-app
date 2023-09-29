@@ -28,7 +28,7 @@ const TVShowGrid = () => {
 
   return (
     <>
-      <HStack justifyContent="space-between" padding="10px">
+      <HStack justifyContent="space-between" padding="10px" flexWrap="wrap">
         <Heading as="h1" size="2xl">
           Trending TV shows
         </Heading>

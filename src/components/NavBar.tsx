@@ -1,6 +1,6 @@
 import { Center, HStack, Hide, Image, Show } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import logo from "../assets/Logo.svg.png";
+import logo from "../assets/logo.png";
 import CategorySelector from "./CategorySelector";
 import ColorModeSwitch from "./ColorModeSwitch";
 import ToggleMenu from "./ToggleMenu";

@@ -6,8 +6,9 @@ import {
   HStack,
   Heading,
   Image,
+  Skeleton,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
@@ -25,7 +26,6 @@ const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // id: string
   const { data: movie, error, isLoading } = useMovie(id!);
 
-
   if (isLoading) return <DetailPageSkeleton />;
 
   if (error)
@@ -36,7 +36,6 @@ const MovieDetailPage = () => {
     );
 
   if (!movie) return null;
-
 
   return (
     <Grid
@@ -102,5 +101,3 @@ const MovieDetailPage = () => {
 };
 
 export default MovieDetailPage;
-
-

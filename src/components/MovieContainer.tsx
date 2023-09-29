@@ -14,7 +14,7 @@ const MovieContainer = ({ path }: Props) => {
   const reset = useMediaContentQueryStore((s) => s.reset);
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0];
+    // const today = new Date().toISOString().split("T")[0];
 
     reset(); // reset all query params
 
@@ -25,10 +25,10 @@ const MovieContainer = ({ path }: Props) => {
       setSortBy("vote_count.desc");
     }
     if (path === "upcoming") {
-      setSortBy("popularity.desc");
+      setSortBy("primary_release_date.desc");
     }
     if (path === "now-playing") {
-      setSortBy("primary_release_date.desc");
+      setSortBy("popularity.desc");
     }
   }, [path]);
 
@@ -55,10 +55,10 @@ const MovieContainer = ({ path }: Props) => {
       <GridItem area="heading" paddingX={2}>
         <ContainerHeading category="Movies" title={title} />
       </GridItem>
-      <GridItem area="aside" paddingX={2}>
+      <GridItem area="aside" padding={2}>
         <MovieSortFilterSidebar />
       </GridItem>
-      <GridItem area="content">
+      <GridItem area="content" paddingX={2}>
         <MovieGrid />
       </GridItem>
     </Grid>

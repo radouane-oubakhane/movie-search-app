@@ -1,25 +1,23 @@
 import {
-  VStack,
-  Box,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
   Accordion,
-  Heading,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
   Divider,
+  Heading,
   Text,
-  Input,
-  SimpleGrid,
+  VStack
 } from "@chakra-ui/react";
+import useMovieGenres from "../hooks/useMovieGenres";
+import useMediaContentQueryStore from "../store";
+import DateRangeFilter from "./DateRangeFilter";
 import GenreList from "./GenreList";
+import KeywordInput from "./KeywordInput";
 import LanguageSelector from "./LanguageSelector";
 import MinimumUserVotesSelector from "./MinimumUserVotesSelector";
 import RangeSliderSelector from "./RangeSliderSelector";
-import KeywordInput from "./KeywordInput";
-import useMediaContentQueryStore from "../store";
-import useMovieGenres from "../hooks/useMovieGenres";
-import DateRangeFilter from "./DateRangeFilter";
 
 const MovieFiltersSelector = () => {
   const setPrimaryReleaseDateGte = useMediaContentQueryStore(

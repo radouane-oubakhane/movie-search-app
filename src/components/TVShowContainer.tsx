@@ -68,10 +68,10 @@ const TVShowContainer = ({ path }: Props) => {
       <GridItem area="heading" paddingX={2}>
         <ContainerHeading category="TV Shows" title={title} />
       </GridItem>
-      <GridItem area="aside" paddingX={2}>
+      <GridItem area="aside" padding={2}>
         <TVShowSortFilterSidebar />
       </GridItem>
-      <GridItem area="content">
+      <GridItem area="content" paddingX={2}>
         <TVShowGrid />
       </GridItem>
     </Grid>

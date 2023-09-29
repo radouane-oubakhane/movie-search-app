@@ -12,6 +12,5 @@ function formatDate(inputDate: string): string {
   }
   
 
-  
-export default formatDate;
 
+export default formatDate;

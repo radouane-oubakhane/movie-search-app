@@ -1,3 +1,6 @@
+
+
+
 import { Grid, GridItem } from "@chakra-ui/react";
 import ContainerHeading from "../components/ContainerHeading";
 import PersonGrid from "../components/PersonGrid";

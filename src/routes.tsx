@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage";
 import MediaSortingAndSelectionPage from "./pages/MediaSortingAndSelectionPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import PopularPeoplePage from "./pages/PopularPeoplePage";
+import MovieDetailPage from "./pages/MovieDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -14,15 +15,29 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
 
-      { path: "movie/popular", element: <MediaSortingAndSelectionPage /> },
-      { path: "movie/top-rated", element: <MediaSortingAndSelectionPage /> },
-      { path: "movie/upcoming", element: <MediaSortingAndSelectionPage /> },
-      { path: "movie/now-playing", element: <MediaSortingAndSelectionPage /> },
+      {
+        path: "movie/",
+        children: [
+          { path: "popular", element: <MediaSortingAndSelectionPage /> },
+          { path: "top-rated", element: <MediaSortingAndSelectionPage /> },
+          { path: "upcoming", element: <MediaSortingAndSelectionPage /> },
+          { path: "now-playing", element: <MediaSortingAndSelectionPage /> },
+          { path: ":id", element: <MovieDetailPage /> },
+        ],
+      },
 
-      { path: "tv/popular", element: <MediaSortingAndSelectionPage /> },
-      { path: "tv/top-rated", element: <MediaSortingAndSelectionPage /> },
-      { path: "tv/on-the-air", element: <MediaSortingAndSelectionPage /> },
-      { path: "tv/airing-today", element: <MediaSortingAndSelectionPage /> },
+      {
+        path: "tv/",
+        children: [
+          { path: "popular", element: <MediaSortingAndSelectionPage /> },
+          { path: "top-rated", element: <MediaSortingAndSelectionPage /> },
+          { path: "on-the-air", element: <MediaSortingAndSelectionPage /> },
+          {
+            path: "airing-today",
+            element: <MediaSortingAndSelectionPage />,
+          },
+        ],
+      },
 
       { path: "person/popular", element: <PopularPeoplePage /> },
 

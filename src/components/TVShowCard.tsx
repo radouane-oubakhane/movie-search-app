@@ -3,6 +3,8 @@ import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import { TVShow } from "../hooks/useTrendingTVShows";
 import formatDate from "../services/format-date";
+import { Link } from "react-router-dom";
+
 
 interface Props {
     tvShow: TVShow;
@@ -22,8 +24,11 @@ const TVShowCard = ({ tvShow }: Props) => {
       <Box>
           <HStack justifyContent='space-between'>
           <VStack align='stretch'>
-              <Heading fontSize="1xl" textAlign='start'>
-                {tvShow.name}
+              <Heading fontSize="1xl" textAlign='start' _hover={{ color: 'blue.400' }}>
+              <Link to={'/tv/' + tvShow.id} >
+              {tvShow.name}
+                  </Link>
+                
               </Heading>
               <Text as='abbr' textAlign='start'>
                 {formatDate(tvShow.first_air_date)}

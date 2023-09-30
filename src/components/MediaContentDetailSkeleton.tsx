@@ -9,7 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-const DetailPageSkeleton = () => {
+const MediaContentDetailSkeleton = () => {
   return (
     <Grid
       justifyContent="center"
@@ -51,7 +51,7 @@ const DetailPageSkeleton = () => {
   );
 };
 
-export default DetailPageSkeleton;
+export default MediaContentDetailSkeleton;
 
 
 

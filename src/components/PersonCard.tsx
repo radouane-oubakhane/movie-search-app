@@ -2,47 +2,52 @@ import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Person } from "../hooks/useSearchPeople";
 import getImageUrl from "../services/image-url";
+import { Link } from "react-router-dom";
 
 interface Props {
-    person: Person;
+  person: Person;
 }
-
-
 
 const PersonCard = ({ person }: Props) => {
   return (
-    <VStack 
-      spacing={4}
-      align='stretch'
-    >
-      <Image boxShadow='md' borderRadius={10} overflow='hidden' 
-      objectFit='cover'
-      src={getImageUrl(person.profile_path, 'w300')} 
-      alt={`${person.name} poster`} 
-    />
+    <VStack spacing={4} align="stretch" paddingY={2}>
+      <Link to={"/person/" + person.id}>
+        <Image
+          _hover={{
+            transform: "scale(1.03)",
+            transition: "transform 0.15s ease-in-out",
+          }}
+          boxShadow="md"
+          borderRadius={10}
+          overflow="hidden"
+          objectFit="cover"
+          src={getImageUrl(person.profile_path, "w300")}
+          alt={`${person.name} poster`}
+        />
+      </Link>
       <Box>
-          <HStack justifyContent='space-between'>
-            <VStack align='stretch'>
-              <Heading fontSize="1xl" textAlign='start'>
-                {person.name}
-              </Heading>
-              <Text fontSize='sm'>
-                
-  
-                {
-                    person.known_for.map((item, index) => (
-                        <React.Fragment key={index} >
-                            {item.title || item.name} 
-                            {(index === person.known_for.length - 1) ? '' : ',' }
-                        </React.Fragment>
-                    ))
-                }
+        <HStack justifyContent="space-between">
+          <VStack align="stretch">
+            <Heading
+              fontSize="1xl"
+              textAlign="start"
+              _hover={{ color: "blue.400" }}
+            >
+              <Link to={"/person/" + person.id}>{person.name}</Link>
+            </Heading>
+            <Text fontSize="sm">
+              {person.known_for.map((item, index) => (
+                <React.Fragment key={index}>
+                  {item.title || item.name}
+                  {index === person.known_for.length - 1 ? "" : ","}
+                </React.Fragment>
+              ))}
             </Text>
-            </VStack>
-          </HStack>
+          </VStack>
+        </HStack>
       </Box>
     </VStack>
-  )
-}
+  );
+};
 
-export default PersonCard
+export default PersonCard;

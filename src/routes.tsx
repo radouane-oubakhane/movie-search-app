@@ -7,6 +7,7 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 import PopularPeoplePage from "./pages/PopularPeoplePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import TVShowDetailPage from "./pages/TVShowDetailPage";
+import PersonDetailPage from "./pages/PersonDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,12 @@ const router = createBrowserRouter([
         ],
       },
 
-      { path: "person/popular", element: <PopularPeoplePage /> },
+      { path: "person/",
+      children: [
+        {path: "popular", element: <PopularPeoplePage />},
+        {path: ":id", element: <PersonDetailPage />},
+      ]
+     },
 
       { path: "search", element: <SearchResultsPage /> },
     ],

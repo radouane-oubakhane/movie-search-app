@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 import AdultBadge from "../components/AdultBadge";
 import AverageVoteCircle from "../components/AverageVoteCircle";
 import MovieCastGrid from "../components/MovieCastGrid";
-import DetailPageSkeleton from "../components/DetailPageSkeleton";
+import MediaContentDetailSkeleton from "../components/MediaContentDetailSkeleton";
 import useMovie from "../hooks/useMovie";
 import formatDate from "../services/format-date";
 import getYearFromDate from "../services/get-year-from-date";
@@ -25,7 +25,7 @@ const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // id: string
   const { data: movie, error, isLoading } = useMovie(id!);
 
-  if (isLoading) return <DetailPageSkeleton />;
+  if (isLoading) return <MediaContentDetailSkeleton />;
 
   if (error)
     return (
@@ -61,7 +61,7 @@ const MovieDetailPage = () => {
           />
         </Center>
       </GridItem>
-      <GridItem area="details" padding={8}>
+      <GridItem area="details" padding={8} paddingY={14}>
         <VStack spacing={4} align="stretch">
           <Heading fontSize="2xl" fontWeight="bold">
             {movie.title}

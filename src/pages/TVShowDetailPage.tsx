@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 
 import AdultBadge from "../components/AdultBadge";
 import AverageVoteCircle from "../components/AverageVoteCircle";
-import DetailPageSkeleton from "../components/DetailPageSkeleton";
+import MediaContentDetailSkeleton from "../components/MediaContentDetailSkeleton";
 import TVShowCastGrid from "../components/TVShowCastGrid";
 import useTVShow from "../hooks/useTVShow";
 import formatDate from "../services/format-date";
@@ -25,7 +25,7 @@ const TVShowDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // id: string
   const { data: tvShow, error, isLoading } = useTVShow(id!);
 
-  if (isLoading) return <DetailPageSkeleton />;
+  if (isLoading) return <MediaContentDetailSkeleton />;
 
   if (error)
     return (
@@ -61,7 +61,7 @@ const TVShowDetailPage = () => {
           />
         </Center>
       </GridItem>
-      <GridItem area="details" padding={8}>
+      <GridItem area="details" padding={8} paddingY={14}>
         <VStack spacing={4} align="stretch">
           <Heading fontSize="2xl" fontWeight="bold">
             {tvShow.name}

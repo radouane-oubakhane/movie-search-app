@@ -1,5 +1,5 @@
-import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
-import { Cast } from "../hooks/useMovieCredits";
+import { Box, HStack, Heading, Image, VStack } from "@chakra-ui/react";
+import { Cast } from "../hooks/usePersonCredits";
 import getImageUrl from "../services/image-url";
 import { Link } from "react-router-dom";
 
@@ -7,10 +7,11 @@ interface Props {
   cast: Cast;
 }
 
-const CastCard = ({ cast }: Props) => {
+const MediaContentCard = ({ cast }: Props) => {
+  const path = cast.media_type === "movie" ? "/movie/" : "/tv/";
   return (
     <VStack spacing={4} align="stretch">
-      <Link to={"/person/" + cast.id}>
+      <Link to={path + cast.id}>
         <Image
           _hover={{
             transform: "scale(1.03)",
@@ -20,8 +21,8 @@ const CastCard = ({ cast }: Props) => {
           borderRadius={10}
           overflow="hidden"
           objectFit="cover"
-          src={getImageUrl(cast.profile_path, "w300")}
-          alt={`${cast.name} poster`}
+          src={getImageUrl(cast.poster_path, "w300")}
+          alt={`${cast.title} poster`}
         />
       </Link>
       <Box>
@@ -32,13 +33,8 @@ const CastCard = ({ cast }: Props) => {
               textAlign="start"
               _hover={{ color: "blue.400" }}
             >
-              <Link to={"/person/" + cast.id}>{cast.name}</Link>
+              <Link to={path + cast.id}>{cast.title}</Link>
             </Heading>
-            <Text fontSize="sm">
-              {cast.character.length > 30
-                ? `${cast.character.substring(0, 30)}...`
-                : cast.character}
-            </Text>
           </VStack>
         </HStack>
       </Box>
@@ -46,4 +42,4 @@ const CastCard = ({ cast }: Props) => {
   );
 };
 
-export default CastCard;
+export default MediaContentCard;

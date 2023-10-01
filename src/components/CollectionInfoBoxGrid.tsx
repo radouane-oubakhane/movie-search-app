@@ -1,7 +1,7 @@
 import { VStack, Text, Button } from "@chakra-ui/react";
 import InfoBoxContainer from "./InfoBoxContainer";
 import InfoBoxSkeleton from "./InfoBoxSkeleton";
-import { Collection } from "../hooks/useSearchCollections";
+import { Collection } from "../entities/Collection";
 import CollectionInfoBox from "./CollectionInfoBox";
 import { InfiniteData } from "@tanstack/react-query";
 import { FetchResponse } from "../hooks/useMediaContent";

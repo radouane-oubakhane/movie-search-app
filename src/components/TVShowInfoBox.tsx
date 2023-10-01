@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@chakra-ui/react";
 import getImageUrl from "../services/image-url";
-import { TVShow } from "../hooks/useTrendingTVShows";
+import { TVShow } from "../entities/TVShow";
 import formatDate from "../services/format-date";
 import { Link } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { Heading, Text } from "@chakra-ui/react";
-import useTVShowCredits from "../hooks/useTVShowCredits copy";
+import useTVShowCredits from "../hooks/useTVShowCredits";
 import CardContainer from "./CardContainer";
 import CastCard from "./CastCard";
 import CastGridContainer from "./CastGridContainer";

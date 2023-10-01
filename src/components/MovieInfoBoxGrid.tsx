@@ -3,7 +3,7 @@ import { InfiniteData } from "@tanstack/react-query";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
-import { Movie } from "../hooks/useTrendingMovies";
+import { Movie } from "../entities/Movie";
 import InfoBoxContainer from "./InfoBoxContainer";
 import InfoBoxSkeleton from "./InfoBoxSkeleton";
 import MovieInfoBox from "./MovieInfoBox";

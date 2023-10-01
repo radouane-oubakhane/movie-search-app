@@ -1,13 +1,7 @@
 import useMediaContent from "./useMediaContent";
-import { Person } from "./useSearchPeople";
+import { Person } from "../entities/Person";
 
-
-
-
-const usePopularPeople = () => useMediaContent<Person>(
-    '/person/popular', 
-    null, 
-    "popular-people",
-);
+const usePopularPeople = () =>
+  useMediaContent<Person>("/person/popular", null, "popular-people");
 
 export default usePopularPeople;

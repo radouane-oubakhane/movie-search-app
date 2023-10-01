@@ -12,8 +12,8 @@ import { InfiniteData } from "@tanstack/react-query";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
-import { Company } from "../hooks/useSearchCompanies";
 import getImageUrl from "../services/image-url";
+import { Company } from "../entities/Company";
 
 interface Props {
   companies: InfiniteData<FetchResponse<Company>>;

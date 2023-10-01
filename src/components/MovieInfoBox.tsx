@@ -6,7 +6,7 @@ import {
   Text,
   CardFooter,
 } from "@chakra-ui/react";
-import { Movie } from "../hooks/useTrendingMovies";
+import { Movie } from "../entities/Movie";
 import getImageUrl from "../services/image-url";
 import formatDate from "../services/format-date";
 import { Link } from "react-router-dom";

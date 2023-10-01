@@ -3,13 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import movieGenres from "../data/movie-genres";
 import tvShowGenres from "../data/tv-show-genres";
+import { Genre } from "../entities/Genre";
 
 
 
-interface Genre {
-    id: number;
-    name: string;
-}
+
 
 interface FetchGenresResponse {
     genres: Genre[];

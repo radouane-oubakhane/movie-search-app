@@ -2,7 +2,7 @@ import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import formatDate from "../services/format-date";
-import { Movie } from "../hooks/useTrendingMovies";
+import { Movie } from "../entities/Movie";
 import { Link } from "react-router-dom";
 
 interface Props {

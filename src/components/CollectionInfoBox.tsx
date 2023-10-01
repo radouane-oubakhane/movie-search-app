@@ -1,6 +1,6 @@
 import { CardBody, Image, Stack, Heading, Text, CardFooter } from "@chakra-ui/react"
 import getImageUrl from "../services/image-url";
-import { Collection } from "../hooks/useSearchCollections";
+import { Collection } from "../entities/Collection";
 
 
 interface Props {

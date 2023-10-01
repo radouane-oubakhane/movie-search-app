@@ -1,5 +1,5 @@
 import useMediaContent from "./useMediaContent";
-import { TVShow } from "./useTrendingTVShows";
+import { TVShow } from "../entities/TVShow";
 
 const useSearchTVShows = () =>
   useMediaContent<TVShow>("/search/tv", null, "search-tv-shows");

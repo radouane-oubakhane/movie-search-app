@@ -1,6 +1,6 @@
 import { Text, Image, Skeleton, VStack, StackDivider, HStack, Badge } from "@chakra-ui/react";
-import { Company } from "../hooks/useSearchCompanies";
 import getImageUrl from "../services/image-url";
+import { Company } from "../entities/Company";
 
 
 interface Props {

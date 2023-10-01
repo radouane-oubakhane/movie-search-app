@@ -1,23 +1,7 @@
-
+import { keyword } from "../entities/keyword";
 import useMediaContent from "./useMediaContent";
 
-
-
-
-
-
-export interface keyword {
-    id: number;
-    name: string;
-}
-
-
-
-
-const useSearchPerson = () => useMediaContent<keyword>(
-        '/search/keyword', 
-        null, 
-        "search-keywords"
-    );
+const useSearchPerson = () =>
+  useMediaContent<keyword>("/search/keyword", null, "search-keywords");
 
 export default useSearchPerson;

@@ -1,5 +1,5 @@
 import { VStack, Text, Button } from "@chakra-ui/react";
-import { TVShow } from "../hooks/useTrendingTVShows";
+import { TVShow } from "../entities/TVShow";
 import TVShowInfoBox from "./TVShowInfoBox";
 import InfoBoxContainer from "./InfoBoxContainer";
 import InfoBoxSkeleton from "./InfoBoxSkeleton";

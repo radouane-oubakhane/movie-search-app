@@ -3,14 +3,14 @@ import {
   Skeleton,
   Spinner,
   Text,
-  UnorderedList
+  UnorderedList,
 } from "@chakra-ui/react";
 
 import { InfiniteData } from "@tanstack/react-query";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
-import { keyword } from "../hooks/useSearchKeywords";
+import { keyword } from "../entities/keyword";
 
 interface Props {
   keywords: InfiniteData<FetchResponse<keyword>>;

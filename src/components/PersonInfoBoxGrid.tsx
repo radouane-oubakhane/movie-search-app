@@ -1,5 +1,5 @@
 import { VStack, Text, Button } from "@chakra-ui/react";
-import { Person } from "../hooks/useSearchPeople";
+import { Person } from "../entities/Person";
 import PersonInfoBox from "./PersonInfoBox";
 import PersonInfoBoxSkeleton from "./PersonInfoBoxSkeleton";
 import { InfiniteData } from "@tanstack/react-query";

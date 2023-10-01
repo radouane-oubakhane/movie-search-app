@@ -1,5 +1,5 @@
 import { VStack, Box, Heading, Text, HStack } from "@chakra-ui/react";
-import { Person } from "../hooks/useSearchPeople";
+import { Person } from "../entities/Person";
 import getAge from "../services/get-age";
 import getGender from "../services/get-gender";
 

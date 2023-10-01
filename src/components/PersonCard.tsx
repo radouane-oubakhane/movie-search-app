@@ -1,6 +1,6 @@
 import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Person } from "../hooks/useSearchPeople";
+import { Person } from "../entities/Person";
 import getImageUrl from "../services/image-url";
 import { Link } from "react-router-dom";
 

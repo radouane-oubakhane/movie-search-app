@@ -1,5 +1,5 @@
 import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
-import { Cast } from "../hooks/useMovieCredits";
+import { Cast } from "../entities/Cast";
 import getImageUrl from "../services/image-url";
 import { Link } from "react-router-dom";
 

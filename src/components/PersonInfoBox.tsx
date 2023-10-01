@@ -1,6 +1,6 @@
 import { HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import getImageUrl from "../services/image-url";
-import { Person } from "../hooks/useSearchPeople";
+import { Person } from "../entities/Person";
 import { Link } from "react-router-dom";
 
 interface Props {

@@ -15,6 +15,7 @@ import PersonDetailSkeleton from "../components/PersonDetailSkeleton";
 import PersonalInfo from "../components/PersonalInfo";
 import usePerson from "../hooks/usePerson";
 import getImageUrl from "../services/image-url";
+import { ExpandableText } from "../components/ExpandableText";
 
 const PersonDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // id: string
@@ -72,7 +73,7 @@ const PersonDetailPage = () => {
           >
             biography
           </Heading>
-          <Text>{person.biography}</Text>
+          <ExpandableText>{person.biography}</ExpandableText>
         </VStack>
       </GridItem>
       <GridItem area="divider">

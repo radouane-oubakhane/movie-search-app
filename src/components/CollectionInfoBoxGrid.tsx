@@ -5,7 +5,7 @@ import { Collection } from "../entities/Collection";
 import CollectionInfoBox from "./CollectionInfoBox";
 import { InfiniteData } from "@tanstack/react-query";
 import { FetchResponse } from "../hooks/useMediaContent";
-import React from "react";
+import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
@@ -25,6 +25,10 @@ const CollectionInfoBoxGrid = ({
   fetchNextPage,
   hasNextPage,
 }: Props) => {
+  useEffect(() => {
+    document.title = "Collections - RMDb";
+  }, []);
+
   const skeletons = Array(12).fill(0);
 
   if (error)

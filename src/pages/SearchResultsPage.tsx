@@ -33,6 +33,7 @@ const SearchResultsPage = () => {
 
   useEffect(() => {
     setSearchText(searchParams.get("query") || "");
+    document.title = "Search Results - RMDb";
     return () => setSearchText("");
   }, []);
 

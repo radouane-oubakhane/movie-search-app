@@ -4,8 +4,13 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import ContainerHeading from "../components/ContainerHeading";
 import PersonGrid from "../components/PersonGrid";
+import { useEffect } from "react";
 
 const PopularPeoplePage = () => {
+
+   useEffect(() => {
+    document.title = "Popular People - RMDb";
+  }, []);
   
 
   return (

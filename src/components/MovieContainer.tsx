@@ -20,15 +20,19 @@ const MovieContainer = ({ path }: Props) => {
 
     if (path === "popular") {
       setSortBy("popularity.desc");
+      document.title = "Popular Movies - RMDb";
     }
     if (path === "top-rated") {
       setSortBy("vote_count.desc");
+      document.title = "Top Rated Movies - RMDb";
     }
     if (path === "upcoming") {
       setSortBy("primary_release_date.desc");
+      document.title = "Upcoming Movies - RMDb";
     }
     if (path === "now-playing") {
       setSortBy("popularity.desc");
+      document.title = "Now Playing Movies - RMDb";
     }
   }, [path]);
 

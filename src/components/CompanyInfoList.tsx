@@ -6,10 +6,10 @@ import {
   Skeleton,
   Spinner,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import { InfiniteData } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
 import getImageUrl from "../services/image-url";
@@ -30,6 +30,9 @@ const CompanyInfoList = ({
   fetchNextPage,
   hasNextPage,
 }: Props) => {
+  useEffect(() => {
+    document.title = "Companies - RMDb";
+  }, []);
   const skeletons = Array(12).fill(0);
 
   if (error)

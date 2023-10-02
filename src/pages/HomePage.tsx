@@ -4,8 +4,13 @@ import TrendingTVShowGrid from "../components/TrendingTVShowGrid";
 import DiscoveryHeader from "../components/DiscoveryHeader";
 import Footer from "../components/Footer";
 import TrendingPersonGrid from "../components/TrendingPersonGrid";
+import { useEffect } from "react";
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = "RMDb";
+  }, []);
+
   return (
     <>
       <Divider orientation="horizontal" marginBottom={4} />
@@ -22,5 +27,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-

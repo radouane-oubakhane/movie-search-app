@@ -4,7 +4,7 @@ import PersonInfoBox from "./PersonInfoBox";
 import PersonInfoBoxSkeleton from "./PersonInfoBoxSkeleton";
 import { InfiniteData } from "@tanstack/react-query";
 import { FetchResponse } from "../hooks/useMediaContent";
-import React from "react";
+import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
@@ -24,6 +24,10 @@ const PersonInfoBoxGrid = ({
   fetchNextPage,
   hasNextPage,
 }: Props) => {
+  useEffect(() => {
+    document.title = "People - RMDb";
+  }, []);
+
   const skeletons = Array(12).fill(0);
 
   if (error)

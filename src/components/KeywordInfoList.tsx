@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 
 import { InfiniteData } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
 import { keyword } from "../entities/keyword";
@@ -27,6 +27,10 @@ const KeywordInfoList = ({
   fetchNextPage,
   hasNextPage,
 }: Props) => {
+  useEffect(() => {
+    document.title = "Keywords - RMDb";
+  }, []);
+
   const skeletons = Array(12).fill(0);
 
   if (error)

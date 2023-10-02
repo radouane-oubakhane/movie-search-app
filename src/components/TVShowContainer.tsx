@@ -29,19 +29,23 @@ const TVShowContainer = ({ path }: Props) => {
 
     if (path === "popular") {
       setSortBy("popularity.desc");
+      document.title = "Popular TV Shows - RMDb";
     }
     if (path === "top-rated") {
       setSortBy("vote_count.desc");
+      document.title = "Top Rated TV Shows - RMDb";
     }
     if (path === "on-the-air") {
       setFirstAirDateGte(today);
       setFirstAirDateLte(nextWeek);
       setSortBy("popularity.desc");
+      document.title = "Currently Airing TV Shows - RMDb";
     }
     if (path === "airing-today") {
       setFirstAirDateGte(today);
       setFirstAirDateLte(today);
       setSortBy("popularity.desc");
+      document.title = "Airing Today TV Shows - RMDb";
     }
   }, [path]);
 

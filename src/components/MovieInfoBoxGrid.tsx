@@ -1,6 +1,6 @@
 import { Button, Text, VStack } from "@chakra-ui/react";
 import { InfiniteData } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FetchResponse } from "../hooks/useMediaContent";
 import { Movie } from "../entities/Movie";
@@ -26,6 +26,10 @@ const MovieInfoBoxGrid = ({
   hasNextPage,
 }: Props) => {
   const skeletons = Array(12).fill(0);
+
+  useEffect(() => {
+    document.title = "Movies - RMDb";
+  }, []);
 
   if (error)
     return (

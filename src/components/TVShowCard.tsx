@@ -1,4 +1,11 @@
-import { HStack, Heading, Image, VStack, Box, Text, Center } from "@chakra-ui/react";
+import {
+  HStack,
+  Heading,
+  Image,
+  VStack,
+  Box,
+  Text,
+} from "@chakra-ui/react";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import { TVShow } from "../entities/TVShow";
@@ -12,21 +19,18 @@ interface Props {
 const TVShowCard = ({ tvShow }: Props) => {
   return (
     <VStack spacing={4} align="stretch">
-      <Link to={"/tv/" + tvShow.id}>
-        <Center>
-        <Image
-          _hover={{
-            transform: "scale(1.03)",
-            transition: "transform 0.15s ease-in-out",
-          }}
-          boxShadow="md"
-          borderRadius={10}
-          overflow="hidden"
-          src={getImageUrl(tvShow.poster_path, "w300")}
-          alt={`${tvShow.name} poster`}
-        />
-        </Center>
-      </Link>
+      <Image
+        _hover={{
+          transform: "scale(1.03)",
+          transition: "transform 0.15s ease-in-out",
+        }}
+        boxShadow="md"
+        borderRadius={10}
+        overflow="hidden"
+        src={getImageUrl(tvShow.poster_path, "w300")}
+        alt={`${tvShow.name} poster`}
+      />
+
       <Box>
         <HStack justifyContent="space-between">
           <VStack align="stretch">

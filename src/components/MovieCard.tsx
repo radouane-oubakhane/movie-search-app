@@ -1,12 +1,4 @@
-import {
-  HStack,
-  Heading,
-  Image,
-  VStack,
-  Box,
-  Text,
-  Center,
-} from "@chakra-ui/react";
+import { HStack, Heading, Image, VStack, Box, Text } from "@chakra-ui/react";
 import AverageVoteCircle from "./AverageVoteCircle";
 import getImageUrl from "../services/image-url";
 import formatDate from "../services/format-date";
@@ -20,22 +12,19 @@ interface Props {
 const MovieCard = ({ movie }: Props) => {
   return (
     <VStack spacing={4} align="stretch">
-      <Link to={"/movie/" + movie.id}>
-        <Center>
-          <Image
-            _hover={{
-              transform: "scale(1.03)",
-              transition: "transform 0.15s ease-in-out",
-            }}
-            boxShadow="md"
-            borderRadius={10}
-            overflow="hidden"
-            objectFit="cover"
-            src={getImageUrl(movie.poster_path, "w300")}
-            alt={`${movie.title} poster`}
-          />
-        </Center>
-      </Link>
+      <Image
+        _hover={{
+          transform: "scale(1.03)",
+          transition: "transform 0.15s ease-in-out",
+        }}
+        boxShadow="md"
+        borderRadius={10}
+        overflow="hidden"
+        objectFit="cover"
+        src={getImageUrl(movie.poster_path, "w300")}
+        alt={`${movie.title} poster`}
+      />
+
       <Box>
         <HStack justifyContent="space-between">
           <VStack align="stretch" flexWrap="wrap">

@@ -34,7 +34,7 @@ const PersonCard = ({ person }: Props) => {
             <Link to={"/person/" + person.id}>{person.name}</Link>
           </Heading>
           <Text fontSize="sm">
-            {person.known_for.map((item, index) => (
+            {person.known_for?.map((item, index) => (
               <React.Fragment key={index}>
                 {item.title || item.name}
                 {index === person.known_for.length - 1 ? "" : ","}

@@ -8,7 +8,7 @@ Welcome to the Movie Search App! This application is built using React with Vite
 
 ## Live Demo
 
-Check out the live demo of the Movie Search App: [Movie Search App Demo](https://movie-search-r5g64sbo1-radouane-oubakhane.vercel.app)
+Check out the live demo of the Movie Search App: [Movie Search App Demo](https://movie-search-app-radouaneoubakhanes-projects.vercel.app/)
 
 
 ## Features

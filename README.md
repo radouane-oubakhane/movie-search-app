@@ -2,14 +2,11 @@
 
 Welcome to the Movie Search App! This application is built using React with Vite.js, TypeScript, Chakra UI, React Query, Zustand, and React Router. It allows users to search for movies, tv shows, actors, directors, collections, keywords and companies based on the TMDB API and explore details about each title. The app is deployed on Vercel.
 
-
 ![Movie Search App Screenshot](screenshots/screenshot.png)
-
 
 ## Live Demo
 
 Check out the live demo of the Movie Search App: [Movie Search App Demo](https://movie-search-app-radouaneoubakhanes-projects.vercel.app/)
-
 
 ## Features
 
@@ -62,6 +59,11 @@ Check out the live demo of the Movie Search App: [Movie Search App Demo](https:/
    VITE_TMDB_API_KEY=your-api-key
    ```
    Replace `your-api-key` with your actual API key.
+
+   Alternatively, you can copy the provided `env.example` file to `.env` and add your API key:
+   ```bash
+   cp env.example .env
+   ```
 
 ### Running the App
 **Start the Development Server**:
